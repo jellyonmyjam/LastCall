@@ -1,0 +1,58 @@
+[gd_scene load_steps=6 format=3 uid="uid://ci8txoos1csur"]
+
+[ext_resource type="Script" uid="uid://cjsahik1c2rk0" path="res://Scripts/bottlepour.gd" id="1_75yu4"]
+[ext_resource type="Texture2D" uid="uid://hxsp5jru741t" path="res://Sprites/jigger_large.png" id="1_148le"]
+[ext_resource type="Script" uid="uid://c8n3b43o0ecm7" path="res://Scripts/pour_minigame.gd" id="1_h2rjt"]
+[ext_resource type="Texture2D" uid="uid://bku2h44giaddo" path="res://Sprites/bottle_small.png" id="2_elfnp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_75yu4"]
+size = Vector2(508, 147)
+
+[node name="PourMinigame" type="Node2D"]
+script = ExtResource("1_h2rjt")
+
+[node name="PopupPanel" type="ColorRect" parent="."]
+clip_contents = true
+offset_left = -400.0
+offset_top = -300.0
+offset_right = 400.0
+offset_bottom = 300.0
+pivot_offset = Vector2(400, 300)
+mouse_filter = 2
+color = Color(0.82891, 0.82891, 0.82891, 1)
+
+[node name="MinigameContent" type="Node2D" parent="PopupPanel"]
+position = Vector2(400, 300)
+
+[node name="Jigger Minigame" type="Node2D" parent="PopupPanel/MinigameContent"]
+position = Vector2(-180, 160)
+
+[node name="Sprite2D" type="Sprite2D" parent="PopupPanel/MinigameContent/Jigger Minigame"]
+position = Vector2(-1, -0.999985)
+scale = Vector2(0.599999, 0.599999)
+texture = ExtResource("1_148le")
+
+[node name="Bottle Minigame" type="Area2D" parent="PopupPanel/MinigameContent"]
+position = Vector2(-160, 0)
+rotation = 0.261799
+script = ExtResource("1_75yu4")
+
+[node name="Sprite2D" type="Sprite2D" parent="PopupPanel/MinigameContent/Bottle Minigame"]
+position = Vector2(1, 2.98028e-08)
+rotation = -1.5708
+scale = Vector2(1.32419, 1.32419)
+texture = ExtResource("2_elfnp")
+centered = false
+offset = Vector2(-160, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PopupPanel/MinigameContent/Bottle Minigame"]
+position = Vector2(277, -1.5)
+shape = SubResource("RectangleShape2D_75yu4")
+
+[node name="FillMeter" type="ProgressBar" parent="PopupPanel"]
+layout_mode = 0
+offset_left = 52.0
+offset_top = 45.0
+offset_right = 98.0
+offset_bottom = 552.0
+fill_mode = 3

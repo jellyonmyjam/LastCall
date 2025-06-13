@@ -1,0 +1,512 @@
+[gd_scene load_steps=40 format=3 uid="uid://c1k7ksaiikifv"]
+
+[ext_resource type="Texture2D" uid="uid://bxocmtyellp36" path="res://Sprites/scratched_metal_26_72_render_2.jpg" id="1_8t5iv"]
+[ext_resource type="Texture2D" uid="uid://bku2h44giaddo" path="res://Sprites/bottle_small.png" id="1_gjdyk"]
+[ext_resource type="Script" uid="uid://eah4mumgkd3s" path="res://Scripts/draggable.gd" id="1_p6gg1"]
+[ext_resource type="Shader" uid="uid://7hd0tlfiehci" path="res://Shaders/AreaSwitch.gdshader" id="2_lrus4"]
+[ext_resource type="Texture2D" uid="uid://b6pjqgwx68xki" path="res://Sprites/metal-plate-768x512.jpg" id="2_ubbiv"]
+[ext_resource type="Texture2D" uid="uid://ci64k4cbneep5" path="res://Sprites/wine-bottle1.png" id="5_mn0nn"]
+[ext_resource type="Texture2D" uid="uid://2vr7gaep8618" path="res://Sprites/jigger_small.png" id="7_6yy46"]
+[ext_resource type="Texture2D" uid="uid://hxsp5jru741t" path="res://Sprites/jigger_large.png" id="8_mn0nn"]
+[ext_resource type="Script" uid="uid://c3jfb0dd8qde4" path="res://Scripts/interactions.gd" id="9_f6sb3"]
+[ext_resource type="Texture2D" uid="uid://ddx5i306rv2ay" path="res://Sprites/shaker_480x480.png" id="9_rcvm1"]
+[ext_resource type="Texture2D" uid="uid://crxswm5css85f" path="res://Sprites/shaker_large.png" id="10_n6w6e"]
+[ext_resource type="PackedScene" uid="uid://ci8txoos1csur" path="res://Scenes/pour_minigame.tscn" id="11_fi6k0"]
+[ext_resource type="Script" uid="uid://n8redk1sub25" path="res://Scripts/popup_manager.gd" id="11_lnogb"]
+[ext_resource type="Shader" uid="uid://pfcfsgewkqa7" path="res://Shaders/BlurOverlay.gdshader" id="12_20iik"]
+[ext_resource type="Texture2D" uid="uid://moc8whmee6ww" path="res://Sprites/glass.png" id="13_b0t05"]
+[ext_resource type="Script" uid="uid://chrviwqwksxtv" path="res://Scripts/pour_manager.gd" id="13_usre1"]
+[ext_resource type="Texture2D" uid="uid://ww83lccs573i" path="res://Sprites/glass_large.png" id="14_81khf"]
+[ext_resource type="Texture2D" uid="uid://dv382wci7jgye" path="res://Sprites/IceMachineScooper.png" id="15_r152n"]
+[ext_resource type="PackedScene" uid="uid://nimtexjbtbo6" path="res://Scenes/scooper.tscn" id="15_u8y8g"]
+[ext_resource type="Script" uid="uid://bkwc11serhdfv" path="res://Scenes/ice_machine.gd" id="16_uc5w8"]
+[ext_resource type="Texture2D" uid="uid://bng3scl4y86j5" path="res://Sprites/Drain.png" id="17_nimp4"]
+[ext_resource type="Shader" uid="uid://dc81186t2byk2" path="res://Shaders/basic.gdshader" id="17_oisvf"]
+[ext_resource type="Texture2D" uid="uid://u0blitt8827b" path="res://Sprites/Wall.jpg" id="18_l8vl3"]
+[ext_resource type="Texture2D" uid="uid://baqiid42q5oo6" path="res://Sprites/guy.png" id="18_oisvf"]
+[ext_resource type="Texture2D" uid="uid://2ufw5vjc6wdv" path="res://Sprites/IceMachineNoScooper.png" id="18_uc5w8"]
+[ext_resource type="Script" uid="uid://dmwy13pfff72u" path="res://Scenes/well_manager.gd" id="22_fcns5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p6gg1"]
+size = Vector2(1280, 720)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nimp4"]
+shader = ExtResource("17_oisvf")
+shader_parameter/tint_color = Color(1, 1, 1, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nimp4"]
+size = Vector2(300, 147)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8t5iv"]
+size = Vector2(1920, 360)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lrus4"]
+shader = ExtResource("2_lrus4")
+shader_parameter/boundary_min = Vector2(0, 720)
+shader_parameter/boundary_max = Vector2(1920, 1080)
+shader_parameter/tint_color = Color(1, 1, 1, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lrus4"]
+size = Vector2(57, 158)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f6sb3"]
+shader = ExtResource("2_lrus4")
+shader_parameter/boundary_min = Vector2(0, 720)
+shader_parameter/boundary_max = Vector2(1920, 1080)
+shader_parameter/tint_color = Color(1, 1, 1, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f6sb3"]
+size = Vector2(53, 86)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_usre1"]
+size = Vector2(80, 102)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uc5w8"]
+size = Vector2(65.9957, 102)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rcvm1"]
+shader = ExtResource("12_20iik")
+shader_parameter/blur_size = 2.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oisvf"]
+size = Vector2(640, 720)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3fl7w"]
+
+[node name="Scene" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(960, 540)
+
+[node name="Workstation" type="Area2D" parent="."]
+input_pickable = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Workstation"]
+z_index = -5
+position = Vector2(1280, 360)
+scale = Vector2(0.796, 0.81)
+texture = ExtResource("1_8t5iv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Workstation"]
+visible = false
+position = Vector2(1280, 360)
+shape = SubResource("RectangleShape2D_p6gg1")
+
+[node name="Objects" type="Node2D" parent="Workstation"]
+
+[node name="Drain" type="Area2D" parent="Workstation" groups=["interactable"]]
+metadata/Item_Type = "Drain"
+
+[node name="Sprite2D" type="Sprite2D" parent="Workstation/Drain"]
+z_index = -1
+material = SubResource("ShaderMaterial_nimp4")
+position = Vector2(1744, 627)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("17_nimp4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Workstation/Drain"]
+visible = false
+position = Vector2(1743, 630.5)
+shape = SubResource("RectangleShape2D_nimp4")
+
+[node name="Well" type="Area2D" parent="."]
+position = Vector2(0, 720)
+input_pickable = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Well"]
+z_index = -5
+position = Vector2(960, 186)
+scale = Vector2(2.5, 0.71)
+texture = ExtResource("2_ubbiv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Well"]
+visible = false
+position = Vector2(960, 180)
+shape = SubResource("RectangleShape2D_8t5iv")
+
+[node name="Sections" type="Node2D" parent="Well"]
+
+[node name="Spirits Section" type="Node2D" parent="Well/Sections"]
+
+[node name="Objects" type="Node2D" parent="Well/Sections/Spirits Section"]
+
+[node name="Whiskey Bottle" type="Area2D" parent="Well/Sections/Spirits Section/Objects" node_paths=PackedStringArray("snap_points", "current_snap_point") groups=["interactable"]]
+position = Vector2(922, 111)
+script = ExtResource("1_p6gg1")
+snap_points = NodePath("../../Spirit Shelf/Snap Points")
+current_snap_point = NodePath("../../Spirit Shelf/Snap Points/Snap Point")
+texture_well = ExtResource("1_gjdyk")
+texture_workstation = ExtResource("5_mn0nn")
+size_well = Vector2(30, 80)
+size_workstation = Vector2(48, 76)
+metadata/Item_Type = "Bottle"
+metadata/Fill_Level = 1000.0
+metadata/Bottle_Contents = "Whiskey"
+
+[node name="Sprite2D" type="Sprite2D" parent="Well/Sections/Spirits Section/Objects/Whiskey Bottle"]
+material = SubResource("ShaderMaterial_lrus4")
+position = Vector2(0, 10)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("1_gjdyk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Well/Sections/Spirits Section/Objects/Whiskey Bottle"]
+shape = SubResource("RectangleShape2D_lrus4")
+
+[node name="Rum Bottle" type="Area2D" parent="Well/Sections/Spirits Section/Objects" node_paths=PackedStringArray("snap_points", "current_snap_point") groups=["interactable"]]
+position = Vector2(994, 116)
+script = ExtResource("1_p6gg1")
+snap_points = NodePath("../../Spirit Shelf/Snap Points")
+current_snap_point = NodePath("../../Spirit Shelf/Snap Points/Snap Point2")
+texture_well = ExtResource("1_gjdyk")
+texture_workstation = ExtResource("5_mn0nn")
+size_well = Vector2(30, 80)
+size_workstation = Vector2(48, 76)
+metadata/Item_Type = "Bottle"
+metadata/Fill_Level = 1000.0
+metadata/Bottle_Contents = "Rum"
+
+[node name="Sprite2D" type="Sprite2D" parent="Well/Sections/Spirits Section/Objects/Rum Bottle"]
+material = SubResource("ShaderMaterial_lrus4")
+position = Vector2(0, 11)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("1_gjdyk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Well/Sections/Spirits Section/Objects/Rum Bottle"]
+shape = SubResource("RectangleShape2D_lrus4")
+
+[node name="Spirit Shelf" type="Node2D" parent="Well/Sections/Spirits Section"]
+position = Vector2(-202, 1)
+
+[node name="Snap Points" type="Node2D" parent="Well/Sections/Spirits Section/Spirit Shelf"]
+position = Vector2(0, -18)
+
+[node name="Snap Point" type="Node2D" parent="Well/Sections/Spirits Section/Spirit Shelf/Snap Points"]
+position = Vector2(1123, 133)
+metadata/Occupied = true
+
+[node name="ColorRect" type="ColorRect" parent="Well/Sections/Spirits Section/Spirit Shelf/Snap Points/Snap Point"]
+offset_left = -5.0
+offset_top = -5.0
+offset_right = 5.0
+offset_bottom = 5.0
+
+[node name="Snap Point2" type="Node2D" parent="Well/Sections/Spirits Section/Spirit Shelf/Snap Points"]
+position = Vector2(1196, 133)
+metadata/Occupied = true
+
+[node name="ColorRect" type="ColorRect" parent="Well/Sections/Spirits Section/Spirit Shelf/Snap Points/Snap Point2"]
+offset_left = -5.0
+offset_top = -5.0
+offset_right = 5.0
+offset_bottom = 5.0
+
+[node name="Snap Point3" type="Node2D" parent="Well/Sections/Spirits Section/Spirit Shelf/Snap Points"]
+position = Vector2(1274, 133)
+metadata/Occupied = false
+
+[node name="ColorRect" type="ColorRect" parent="Well/Sections/Spirits Section/Spirit Shelf/Snap Points/Snap Point3"]
+offset_left = -5.0
+offset_top = -5.0
+offset_right = 5.0
+offset_bottom = 5.0
+
+[node name="Snap Point4" type="Node2D" parent="Well/Sections/Spirits Section/Spirit Shelf/Snap Points"]
+position = Vector2(1156, 253)
+metadata/Occupied = false
+
+[node name="ColorRect" type="ColorRect" parent="Well/Sections/Spirits Section/Spirit Shelf/Snap Points/Snap Point4"]
+offset_left = -5.0
+offset_top = -5.0
+offset_right = 5.0
+offset_bottom = 5.0
+
+[node name="Snap Point5" type="Node2D" parent="Well/Sections/Spirits Section/Spirit Shelf/Snap Points"]
+position = Vector2(1231, 253)
+metadata/Occupied = false
+
+[node name="ColorRect" type="ColorRect" parent="Well/Sections/Spirits Section/Spirit Shelf/Snap Points/Snap Point5"]
+offset_left = -5.0
+offset_top = -5.0
+offset_right = 5.0
+offset_bottom = 5.0
+
+[node name="Snap Point6" type="Node2D" parent="Well/Sections/Spirits Section/Spirit Shelf/Snap Points"]
+position = Vector2(1304, 253)
+metadata/Occupied = false
+
+[node name="ColorRect" type="ColorRect" parent="Well/Sections/Spirits Section/Spirit Shelf/Snap Points/Snap Point6"]
+offset_left = -5.0
+offset_top = -5.0
+offset_right = 5.0
+offset_bottom = 5.0
+
+[node name="ColorRect" type="ColorRect" parent="Well/Sections/Spirits Section/Spirit Shelf"]
+offset_left = 1096.0
+offset_top = 153.0
+offset_right = 1896.0
+offset_bottom = 193.0
+mouse_filter = 2
+color = Color(0.205921, 0.25119, 0.257356, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="Well/Sections/Spirits Section/Spirit Shelf"]
+offset_left = 1096.0
+offset_top = 273.0
+offset_right = 1896.0
+offset_bottom = 313.0
+mouse_filter = 2
+color = Color(0.205921, 0.25119, 0.257356, 1)
+
+[node name="Items Section" type="Node2D" parent="Well/Sections"]
+visible = false
+
+[node name="Objects" type="Node2D" parent="Well/Sections/Items Section"]
+
+[node name="Jigger" type="Area2D" parent="Well/Sections/Items Section/Objects" node_paths=PackedStringArray("snap_points", "current_snap_point") groups=["interactable"]]
+position = Vector2(251, 158)
+script = ExtResource("1_p6gg1")
+snap_points = NodePath("../../Equipment Shelf/Snap Points")
+current_snap_point = NodePath("../../Equipment Shelf/Snap Points/Snap Point3")
+texture_well = ExtResource("7_6yy46")
+texture_workstation = ExtResource("8_mn0nn")
+size_well = Vector2(35, 50)
+size_workstation = Vector2(32, 55)
+metadata/Item_Type = "Jigger"
+metadata/Fill_Level = 0.0
+metadata/Jigger_Contents = ""
+
+[node name="Sprite2D" type="Sprite2D" parent="Well/Sections/Items Section/Objects/Jigger"]
+material = SubResource("ShaderMaterial_f6sb3")
+scale = Vector2(0.25, 0.3)
+texture = ExtResource("7_6yy46")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Well/Sections/Items Section/Objects/Jigger"]
+position = Vector2(-0.5, 2)
+shape = SubResource("RectangleShape2D_f6sb3")
+
+[node name="Shaker" type="Area2D" parent="Well/Sections/Items Section/Objects" node_paths=PackedStringArray("snap_points", "current_snap_point") groups=["interactable"]]
+position = Vector2(175, 141)
+script = ExtResource("1_p6gg1")
+snap_points = NodePath("../../Equipment Shelf/Snap Points")
+current_snap_point = NodePath("../../Equipment Shelf/Snap Points/Snap Point2")
+texture_well = ExtResource("9_rcvm1")
+texture_workstation = ExtResource("10_n6w6e")
+size_well = Vector2(32, 74)
+size_workstation = Vector2(40, 70)
+snap_offset = Vector2(0, -20)
+metadata/Item_Type = "Shaker"
+metadata/Fill_Level = 0.0
+metadata/Contents = {}
+metadata/Has_Ice = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Well/Sections/Items Section/Objects/Shaker"]
+material = SubResource("ShaderMaterial_f6sb3")
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("9_rcvm1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Well/Sections/Items Section/Objects/Shaker"]
+position = Vector2(-0.5, 2.5)
+shape = SubResource("RectangleShape2D_usre1")
+
+[node name="Glass" type="Area2D" parent="Well/Sections/Items Section/Objects" node_paths=PackedStringArray("snap_points", "current_snap_point") groups=["interactable"]]
+position = Vector2(96, 151)
+script = ExtResource("1_p6gg1")
+snap_points = NodePath("../../Equipment Shelf/Snap Points")
+current_snap_point = NodePath("../../Equipment Shelf/Snap Points/Snap Point")
+texture_well = ExtResource("13_b0t05")
+texture_workstation = ExtResource("14_81khf")
+size_well = Vector2(50, 60)
+size_workstation = Vector2(50, 60)
+metadata/Item_Type = "Glass"
+metadata/Fill_Level = 0.0
+metadata/Contents = {}
+metadata/Has_Ice = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Well/Sections/Items Section/Objects/Glass"]
+material = SubResource("ShaderMaterial_f6sb3")
+scale = Vector2(0.12, 0.12)
+texture = ExtResource("13_b0t05")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Well/Sections/Items Section/Objects/Glass"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_usre1")
+
+[node name="Equipment Shelf" type="Node2D" parent="Well/Sections/Items Section"]
+
+[node name="Snap Points" type="Node2D" parent="Well/Sections/Items Section/Equipment Shelf"]
+position = Vector2(-1270, 11)
+
+[node name="Snap Point" type="Node2D" parent="Well/Sections/Items Section/Equipment Shelf/Snap Points"]
+position = Vector2(1370, 170)
+metadata/Occupied = true
+
+[node name="ColorRect" type="ColorRect" parent="Well/Sections/Items Section/Equipment Shelf/Snap Points/Snap Point"]
+offset_left = -5.0
+offset_top = -5.0
+offset_right = 5.0
+offset_bottom = 5.0
+
+[node name="Snap Point2" type="Node2D" parent="Well/Sections/Items Section/Equipment Shelf/Snap Points"]
+position = Vector2(1443, 171)
+metadata/Occupied = true
+
+[node name="ColorRect" type="ColorRect" parent="Well/Sections/Items Section/Equipment Shelf/Snap Points/Snap Point2"]
+offset_left = -5.0
+offset_top = -5.0
+offset_right = 5.0
+offset_bottom = 5.0
+
+[node name="Snap Point3" type="Node2D" parent="Well/Sections/Items Section/Equipment Shelf/Snap Points"]
+position = Vector2(1521, 170)
+metadata/Occupied = true
+
+[node name="ColorRect" type="ColorRect" parent="Well/Sections/Items Section/Equipment Shelf/Snap Points/Snap Point3"]
+offset_left = -5.0
+offset_top = -5.0
+offset_right = 5.0
+offset_bottom = 5.0
+
+[node name="Snap Point4" type="Node2D" parent="Well/Sections/Items Section/Equipment Shelf/Snap Points"]
+position = Vector2(1370, 287)
+metadata/Occupied = false
+
+[node name="ColorRect" type="ColorRect" parent="Well/Sections/Items Section/Equipment Shelf/Snap Points/Snap Point4"]
+offset_left = -5.0
+offset_top = -5.0
+offset_right = 5.0
+offset_bottom = 5.0
+
+[node name="Snap Point5" type="Node2D" parent="Well/Sections/Items Section/Equipment Shelf/Snap Points"]
+position = Vector2(1445, 287)
+metadata/Occupied = false
+
+[node name="ColorRect" type="ColorRect" parent="Well/Sections/Items Section/Equipment Shelf/Snap Points/Snap Point5"]
+offset_left = -5.0
+offset_top = -5.0
+offset_right = 5.0
+offset_bottom = 5.0
+
+[node name="Snap Point6" type="Node2D" parent="Well/Sections/Items Section/Equipment Shelf/Snap Points"]
+position = Vector2(1518, 286)
+metadata/Occupied = false
+
+[node name="ColorRect" type="ColorRect" parent="Well/Sections/Items Section/Equipment Shelf/Snap Points/Snap Point6"]
+offset_left = -5.0
+offset_top = -5.0
+offset_right = 5.0
+offset_bottom = 5.0
+
+[node name="Equipment Section" type="Node2D" parent="Well/Sections"]
+
+[node name="Objects" type="Node2D" parent="Well/Sections/Equipment Section"]
+
+[node name="Ice Machine" type="Area2D" parent="Well/Sections/Equipment Section"]
+z_index = -1
+script = ExtResource("16_uc5w8")
+scooper_scene = ExtResource("15_u8y8g")
+texture_with_scooper = ExtResource("15_r152n")
+texture_without_scooper = ExtResource("18_uc5w8")
+
+[node name="Sprite2D" type="Sprite2D" parent="Well/Sections/Equipment Section/Ice Machine"]
+position = Vector2(1666, 184)
+scale = Vector2(0.244141, 0.21875)
+texture = ExtResource("15_r152n")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Well/Sections/Equipment Section/Ice Machine"]
+position = Vector2(1650, 74)
+rotation = -0.291198
+shape = SubResource("RectangleShape2D_uc5w8")
+
+[node name="Snap Points" type="Node2D" parent="Well/Sections/Equipment Section/Ice Machine"]
+position = Vector2(1657, 93)
+
+[node name="Snap Point" type="Node2D" parent="Well/Sections/Equipment Section/Ice Machine/Snap Points"]
+visible = false
+position = Vector2(3, -2)
+metadata/Occupied = false
+
+[node name="ColorRect" type="ColorRect" parent="Well/Sections/Equipment Section/Ice Machine/Snap Points/Snap Point"]
+offset_left = -5.0
+offset_top = -5.0
+offset_right = 5.0
+offset_bottom = 5.0
+
+[node name="InteractionManager" type="Node2D" parent="."]
+script = ExtResource("9_f6sb3")
+
+[node name="PourManager" type="Node2D" parent="."]
+script = ExtResource("13_usre1")
+
+[node name="PopupManager" type="CanvasLayer" parent="."]
+script = ExtResource("11_lnogb")
+
+[node name="PourMinigame" parent="PopupManager" groups=["popup"] instance=ExtResource("11_fi6k0")]
+visible = false
+position = Vector2(958, 362)
+
+[node name="BlurOverlay" type="ColorRect" parent="PopupManager"]
+visible = false
+material = SubResource("ShaderMaterial_rcvm1")
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 2
+color = Color(1, 1, 1, 0)
+
+[node name="Dialogue" type="Area2D" parent="."]
+input_pickable = false
+
+[node name="Wall" type="Sprite2D" parent="Dialogue"]
+position = Vector2(230, 325)
+scale = Vector2(3, 3.7)
+texture = ExtResource("18_l8vl3")
+
+[node name="Guy" type="Sprite2D" parent="Dialogue"]
+position = Vector2(303, 375)
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("18_oisvf")
+
+[node name="Counter" type="Sprite2D" parent="Dialogue"]
+position = Vector2(320, 633.5)
+scale = Vector2(0.4, 0.194444)
+texture = ExtResource("1_8t5iv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dialogue"]
+visible = false
+position = Vector2(320, 360)
+shape = SubResource("RectangleShape2D_oisvf")
+
+[node name="Objects" type="Node2D" parent="Dialogue"]
+
+[node name="WellManager" type="CanvasLayer" parent="."]
+script = ExtResource("22_fcns5")
+
+[node name="Well Sections" type="PanelContainer" parent="WellManager"]
+offset_left = 1840.0
+offset_top = 757.0
+offset_right = 1900.0
+offset_bottom = 1057.0
+scale = Vector2(0.998373, 1)
+theme_override_styles/panel = SubResource("StyleBoxFlat_3fl7w")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="WellManager/Well Sections"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Spirits Button" type="Button" parent="WellManager/Well Sections/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Items Button" type="Button" parent="WellManager/Well Sections/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Ingredients Button" type="Button" parent="WellManager/Well Sections/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Machinery Button" type="Button" parent="WellManager/Well Sections/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Inventory Button" type="Button" parent="WellManager/Well Sections/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3

@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://nimtexjbtbo6"]
+
+[ext_resource type="Script" uid="uid://eah4mumgkd3s" path="res://Scripts/draggable.gd" id="1_ddd1p"]
+[ext_resource type="Texture2D" uid="uid://lvu3v6kmrby7" path="res://Sprites/ScoopIce.png" id="2_2cwjf"]
+[ext_resource type="Shader" uid="uid://7hd0tlfiehci" path="res://Shaders/AreaSwitch.gdshader" id="3_ofxjy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f6sb3"]
+shader = ExtResource("3_ofxjy")
+shader_parameter/boundary_min = Vector2(0, 720)
+shader_parameter/boundary_max = Vector2(1920, 1080)
+shader_parameter/tint_color = Color(1, 1, 1, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dlgao"]
+size = Vector2(140.038, 72.7323)
+
+[node name="Scooper" type="Area2D" groups=["interactable"]]
+script = ExtResource("1_ddd1p")
+texture_well = ExtResource("2_2cwjf")
+texture_workstation = ExtResource("2_2cwjf")
+size_well = Vector2(70, 35)
+size_workstation = Vector2(70, 35)
+metadata/Item_Type = "Scooper"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_f6sb3")
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("2_2cwjf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-5.54272, -0.629028)
+rotation = 1.22173
+shape = SubResource("RectangleShape2D_dlgao")
