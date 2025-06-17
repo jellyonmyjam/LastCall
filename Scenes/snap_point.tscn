@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://b7nqbjiulpvy7"]
+
+[node name="Snap Point" type="Node2D"]
+visible = false
+metadata/Occupied = false
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -5.0
+offset_top = -5.0
+offset_right = 5.0
+offset_bottom = 5.0

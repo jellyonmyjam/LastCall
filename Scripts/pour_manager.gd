@@ -1,54 +1,62 @@
 extends Node2D
 
+@onready var inventory_manager: Node2D = $"../InventoryManager"
 var target_object: Area2D = null
 var dragged_object: Area2D = null
 
 
 func initiate_pour():
-	var target_type = target_object.get_meta("Item_Type")
-	var dragged_type = dragged_object.get_meta("Item_Type")
+	var target_type = target_object.item_type
+	var dragged_type = dragged_object.item_type
+	var target_id = target_object.get_meta("id")
+	var dragged_id = dragged_object.get_meta("id")
 	
 	if target_type == "Drain" and dragged_type == "Jigger":
-		dragged_object.set_meta("Fill_Level",0.0)
-		dragged_object.set_meta("Jigger_Contents","")
+		inventory_manager.tool_inventory[dragged_id]["fill_level"] = 0.0
+		inventory_manager.tool_inventory[dragged_id]["jigger_contents"] = ""
 		
-	elif target_type == "Drain" and dragged_type == "Shaker":
-		dragged_object.set_meta("Fill_Level",0.0)
-		dragged_object.set_meta("Contents",{})
+	if target_type == "Drain" and dragged_type == "Shaker":
+		inventory_manager.tool_inventory[dragged_id]["fill_level"] = 0.0
+		inventory_manager.tool_inventory[dragged_id]["contents"] = {}
+		inventory_manager.tool_inventory[dragged_id]["has_ice"] = false
 		
-	elif target_type == "Drain" and dragged_type == "Glass":
-		dragged_object.set_meta("Fill_Level",0.0)
-		dragged_object.set_meta("Contents",{})
+	if target_type == "Drain" and dragged_type == "Glass":
+		inventory_manager.glass_inventory[dragged_id]["fill_level"] = 0.0
+		inventory_manager.glass_inventory[dragged_id]["contents"] = {}
+		inventory_manager.glass_inventory[dragged_id]["has_ice"] = false
 	
-	elif target_type == "Shaker" and dragged_type == "Scooper":
-		target_object.set_meta("Has_Ice", true)
+	if target_type == "Shaker" and dragged_type == "Scooper":
+		inventory_manager.tool_inventory[target_id]["has_ice"] = true
 		
-	elif target_type == "Glass" and dragged_type == "Scooper":
-		target_object.set_meta("Has_Ice", true)
+	if target_type == "Glass" and dragged_type == "Scooper":
+		inventory_manager.glass_inventory[target_id]["has_ice"] = true
 		
-	elif target_type == "Shaker" and dragged_type == "Jigger":
-		var fill_level: float = dragged_object.get_meta("Fill_Level")
-		var ingredient: String = dragged_object.get_meta("Jigger_Contents")
-		var contents: Dictionary = target_object.get_meta("Contents")
-		
+	if target_type == "Shaker" and dragged_type == "Jigger":
+		var fill_level: float = inventory_manager.tool_inventory[dragged_id]["fill_level"]
+		var ingredient: String = inventory_manager.tool_inventory[dragged_id]["jigger_contents"]
+		var contents: Dictionary = inventory_manager.tool_inventory[target_id]["contents"]
+
 		if ingredient != "":
 			if contents.has(ingredient):
 				contents[ingredient] += fill_level
 			else:
 				contents[ingredient] = fill_level
-			target_object.set_meta("Contents", contents)
 
-		dragged_object.set_meta("Fill_Level",0.0)
-		dragged_object.set_meta("Jigger_Contents","")
+			inventory_manager.tool_inventory[target_id]["contents"] = contents
+			inventory_manager.tool_inventory[dragged_id]["fill_level"] = 0.0
+			inventory_manager.tool_inventory[dragged_id]["jigger_contents"] = ""
+
 		print(contents)
 		
-	elif target_type == "Glass" and dragged_type == "Shaker":
-		var contents: Dictionary = dragged_object.get_meta("Contents")
-		var fill_level: float = dragged_object.get_meta("Fill_Level")
+	if target_type == "Glass" and dragged_type == "Shaker":
+		var contents: Dictionary = inventory_manager.tool_inventory[dragged_id]["contents"]
+		var fill_level: float = inventory_manager.tool_inventory[dragged_id]["fill_level"]
 
-		target_object.set_meta("Contents", contents.duplicate())
-		target_object.set_meta("Fill_Level", fill_level)
+		inventory_manager.glass_inventory[target_id]["contents"] = contents.duplicate()
+		inventory_manager.glass_inventory[target_id]["fill_level"] = fill_level
 
-		dragged_object.set_meta("Contents", {})
-		dragged_object.set_meta("Fill_Level", 0.0)
-		print('test')
+		inventory_manager.tool_inventory[dragged_id]["contents"] = {}
+		inventory_manager.tool_inventory[dragged_id]["fill_level"] = 0.0
+		
+		print(contents)
+		

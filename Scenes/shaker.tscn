@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=3 uid="uid://bi7ej4w4bmvor"]
+
+[ext_resource type="Script" uid="uid://eah4mumgkd3s" path="res://Scripts/draggable.gd" id="1_3cns1"]
+[ext_resource type="Texture2D" uid="uid://ddx5i306rv2ay" path="res://Sprites/shaker_480x480.png" id="2_dbqg4"]
+[ext_resource type="Texture2D" uid="uid://crxswm5css85f" path="res://Sprites/shaker_large.png" id="3_ojfl1"]
+[ext_resource type="Shader" uid="uid://7hd0tlfiehci" path="res://Shaders/AreaSwitch.gdshader" id="4_wcjym"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f6sb3"]
+shader = ExtResource("4_wcjym")
+shader_parameter/boundary_min = Vector2(0, 720)
+shader_parameter/boundary_max = Vector2(1920, 1080)
+shader_parameter/tint_color = Color(1, 1, 1, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_usre1"]
+size = Vector2(80, 102)
+
+[node name="Shaker" type="Area2D" groups=["interactable"]]
+script = ExtResource("1_3cns1")
+texture_well = ExtResource("2_dbqg4")
+item_type = "Shaker"
+texture_workstation = ExtResource("3_ojfl1")
+size_well = Vector2(32, 74)
+size_workstation = Vector2(40, 70)
+snap_offset = Vector2(0, -20)
+metadata/id = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_f6sb3")
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_dbqg4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 2.5)
+shape = SubResource("RectangleShape2D_usre1")

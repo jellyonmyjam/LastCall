@@ -1,0 +1,33 @@
+[gd_scene load_steps=7 format=3 uid="uid://dad02cunkpjcf"]
+
+[ext_resource type="Script" uid="uid://eah4mumgkd3s" path="res://Scripts/draggable.gd" id="1_epkpk"]
+[ext_resource type="Texture2D" uid="uid://moc8whmee6ww" path="res://Sprites/glass.png" id="2_xy4n1"]
+[ext_resource type="Texture2D" uid="uid://ww83lccs573i" path="res://Sprites/glass_large.png" id="3_s8rjn"]
+[ext_resource type="Shader" uid="uid://7hd0tlfiehci" path="res://Shaders/AreaSwitch.gdshader" id="4_h0fon"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f6sb3"]
+shader = ExtResource("4_h0fon")
+shader_parameter/boundary_min = Vector2(0, 720)
+shader_parameter/boundary_max = Vector2(1920, 1080)
+shader_parameter/tint_color = Color(1, 1, 1, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_usre1"]
+size = Vector2(80, 102)
+
+[node name="Glass" type="Area2D" groups=["interactable"]]
+script = ExtResource("1_epkpk")
+texture_well = ExtResource("2_xy4n1")
+item_type = "Glass"
+texture_workstation = ExtResource("3_s8rjn")
+size_well = Vector2(50, 60)
+size_workstation = Vector2(50, 60)
+metadata/id = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_f6sb3")
+scale = Vector2(0.12, 0.12)
+texture = ExtResource("2_xy4n1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_usre1")

@@ -11,6 +11,7 @@ var overlapped_object: Area2D = null
 var previous_overlap: Area2D = null
 var has_been_initialized = false
 var can_snap = false
+var nearest_snap: Node2D = null
 var previous_snap_point: Node2D = null
 var saved_snap_point: Node2D = null
 var detach_origin: Vector2
@@ -22,9 +23,10 @@ signal cleared_hover(target_object: Area2D)
 @onready var well: Area2D = get_tree().get_root().get_node("Scene/Well")
 @onready var workstation: Area2D = get_tree().get_root().get_node("Scene/Workstation")
 @onready var dialogue: Area2D = get_tree().get_root().get_node("Scene/Dialogue")
-@export var snap_points: Node2D
+@export var snap_points: Array[Node2D]
 @export var current_snap_point: Node2D
 @export var texture_well: Texture2D
+@export var item_type: String
 @export var texture_workstation: Texture2D
 @export var size_well: Vector2 = Vector2(0,0)
 @export var size_workstation: Vector2 = Vector2(0,0)
@@ -94,13 +96,16 @@ func _input(event):
 					can_snap = true
 					
 			if can_snap:
-				for point in snap_points.get_children():
-					if point == saved_snap_point:
-						continue
-					if point.get_meta("Occupied") == false and global_position.distance_to(point.global_position) < snap_threshold:
-						is_snapped = true
-						current_snap_point = point
-						current_snap_point.set_meta("Occupied", true)
+				for group in snap_points:
+					for point in group.get_children():
+						# Allow re-snapping to saved_snap_point even if "Occupied"
+						if point == saved_snap_point or point.get_meta("Occupied") == false:
+							if global_position.distance_to(point.global_position) < snap_threshold:
+								is_snapped = true
+								current_snap_point = point
+								current_snap_point.set_meta("Occupied", true)
+								break
+					if is_snapped:
 						break
 					
 			if last_area == "Well" and is_snapped == false:
@@ -144,18 +149,19 @@ func _process(_delta):
 		
 		# Snapping logic
 		var nearest_dist = snap_threshold
-		var nearest_snap = null
+		nearest_snap = null
 		
-		if can_snap and snap_points.is_visible_in_tree():
-			for point in snap_points.get_children():
-				if point == previous_snap_point:
+		if can_snap:
+			for group in snap_points:
+				if not group.is_visible_in_tree():
 					continue
-				elif point.get_meta("Occupied") == false:
-					var dist = mouse_pos.distance_to(point.global_position)
-					if dist < nearest_dist:
-						nearest_snap = point
-						nearest_dist = dist
-				
+				for point in group.get_children():
+					if point.get_meta("Occupied") == false:
+						var dist = mouse_pos.distance_to(point.global_position)
+						if dist < nearest_dist:
+							nearest_snap = point
+							nearest_dist = dist
+
 			if nearest_snap:
 				global_position = nearest_snap.global_position + snap_offset
 			elif nearest_snap and mouse_pos.distance_to(nearest_snap.global_position) > snap_threshold:
@@ -225,6 +231,10 @@ func switch_area(area: Area2D) -> void:
 			else:
 				area.get_node("Objects").add_child(self)
 			global_position = global_pos
+			
+			if dragging and previous_snap_point:
+				detach_origin = previous_snap_point.global_position
+				can_snap = false
 		).call_deferred()
 		
 	has_been_initialized = true

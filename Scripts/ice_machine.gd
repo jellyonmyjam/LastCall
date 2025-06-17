@@ -1,8 +1,8 @@
 extends Area2D
 
 @export var scooper_scene: PackedScene
-@onready var snap_points: Node2D = $"Snap Points"
-@onready var snap_point: Node2D = $"Snap Points/Snap Point"
+@onready var snap_points: Array[Node2D] = [$"Snap Points Scooper"]
+@onready var snap_point: Node2D = $"Snap Points Scooper/Snap Point"
 @onready var objects: Node2D = $"../Objects"
 @export var texture_with_scooper: Texture2D
 @export var texture_without_scooper: Texture2D
