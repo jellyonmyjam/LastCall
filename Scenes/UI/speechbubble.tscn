@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://dh3ywhu4a6fqp"]
+
+[ext_resource type="FontFile" uid="uid://3v1b015rkk52" path="res://Fonts/Asimov-MwEn.otf" id="1_aelxi"]
+
+[node name="PanelContainer" type="PanelContainer"]
+offset_right = 20.0
+offset_bottom = 20.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Label" type="Label" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_fonts/font = ExtResource("1_aelxi")
+theme_override_font_sizes/font_size = 24
+text = "Text"
+autowrap_mode = 2

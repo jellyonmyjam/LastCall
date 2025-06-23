@@ -16,6 +16,7 @@ size = Vector2(140.038, 72.7323)
 [node name="Scooper" type="Area2D" groups=["interactable"]]
 script = ExtResource("1_ddd1p")
 texture_well = ExtResource("2_2cwjf")
+item_type = "Scooper"
 texture_workstation = ExtResource("2_2cwjf")
 size_well = Vector2(70, 35)
 size_workstation = Vector2(70, 35)

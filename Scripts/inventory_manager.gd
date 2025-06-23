@@ -1,28 +1,31 @@
 extends Node2D
 
 @onready var snap_points_bottles: Node2D = $"../Well/Sections/Bottles Section/Bottle Shelf/Snap Points Bottles"
-@export var bottle_scene := preload("res://Scenes/base_bottle.tscn")
 @onready var bottle_objects: Node2D = $"../Well/Sections/Bottles Section/Objects"
 @onready var snap_points_glasses: Node2D = $"../Well/Sections/Glassware Section/Glass Shelf/Snap Points Glasses"
-@export var glass_scene := preload("res://Scenes/base_glass.tscn")
 @onready var glass_objects: Node2D = $"../Well/Sections/Glassware Section/Objects"
 @onready var snap_points_serve: Node2D = $"../Dialogue/Snap Points Serve"
-@export var jigger_scene := preload("res://Scenes/jigger.tscn")
-@export var shaker_scene := preload("res://Scenes/shaker.tscn")
 @onready var snap_points_tools: Node2D = $"../Well/Sections/Items Section/Equipment Shelf/Snap Points Equipment"
 @onready var tool_objects: Node2D = $"../Well/Sections/Items Section/Objects"
+@onready var snap_points_soda: Node2D = $"../Well/Sections/Appliances Section/Soda Machine/Snap Points Soda"
+@export var bottle_scene := preload("res://Scenes/base_bottle.tscn")
+@export var glass_scene := preload("res://Scenes/base_glass.tscn")
+@export var jigger_scene := preload("res://Scenes/jigger.tscn")
+@export var shaker_scene := preload("res://Scenes/shaker.tscn")
+@onready var item_catalogue: Node2D = $"../ItemCatalogue"
 
 
 var bottle_inventory = {
-	1: {"name": "Grey Goose", "fill_level": 25.0},
-	2: {"name": "Captain Morgan", "fill_level": 25.0},
-	3: {"name": "Jack Daniel's", "fill_level": 25.0}
+	1: {"name": "Spudmash", "fill_level": 25.0},
+	2: {"name": "Molassic", "fill_level": 25.0},
+	3: {"name": "Knotwood Reserve", "fill_level": 25.0},
+	4: {"name": "Agent Green", "fill_level": 10.0}
 }
 
 var glass_inventory = {
-	1: {"type": "Rocks", "fill_level": 0.0, "contents": {}, "has_ice": false},
-	2: {"type": "Highball", "fill_level": 0.0, "contents": {}, "has_ice": false},
-	3: {"type": "Mug", "fill_level": 0.0, "contents": {}, "has_ice": false}
+	1: {"type": "Rocks", "fill_level": 0.0, "contents": {}, "prep": "built", "has_ice": false, "has_soda": false},
+	2: {"type": "Highball", "fill_level": 0.0, "contents": {}, "prep": "built", "has_ice": false, "has_soda": false},
+	3: {"type": "Mug", "fill_level": 0.0, "contents": {}, "prep": "built", "has_ice": false, "has_soda": false}
 }
 
 var tool_inventory := {
@@ -52,6 +55,8 @@ func bottle_spawn():
 		bottle_instance.snap_points.append(snap_points_bottles)
 		bottle_instance.set_meta("id", id)
 		bottle_instance.set_meta("name", bottle_name)
+		bottle_instance.texture_well = item_catalogue.bottle_data[bottle_name]["texture_well"]
+		bottle_instance.texture_workstation = item_catalogue.bottle_data[bottle_name]["texture_workstation"]
 	
 		bottle_objects.add_child(bottle_instance)
 		bottle_instance.global_position = point.global_position
@@ -76,7 +81,10 @@ func glass_spawn():
 		glass_instance.name = glass_name + " (" + str(id) + ")"
 		glass_instance.snap_points.append(snap_points_glasses)
 		glass_instance.snap_points.append(snap_points_serve)
+		glass_instance.snap_points.append(snap_points_soda)
 		glass_instance.set_meta("id", id)
+		glass_instance.texture_well = item_catalogue.glass_data[glass_name]["texture_well"]
+		glass_instance.texture_workstation = item_catalogue.glass_data[glass_name]["texture_workstation"]
 	
 		glass_objects.add_child(glass_instance)
 		glass_instance.global_position = point.global_position

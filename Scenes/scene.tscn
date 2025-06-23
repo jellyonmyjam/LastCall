@@ -1,10 +1,11 @@
-[gd_scene load_steps=29 format=3 uid="uid://c1k7ksaiikifv"]
+[gd_scene load_steps=38 format=3 uid="uid://c1k7ksaiikifv"]
 
 [ext_resource type="Texture2D" uid="uid://bxocmtyellp36" path="res://Sprites/scratched_metal_26_72_render_2.jpg" id="1_8t5iv"]
 [ext_resource type="Texture2D" uid="uid://b6pjqgwx68xki" path="res://Sprites/metal-plate-768x512.jpg" id="2_ubbiv"]
 [ext_resource type="Script" uid="uid://c3jfb0dd8qde4" path="res://Scripts/interactions.gd" id="9_f6sb3"]
 [ext_resource type="PackedScene" uid="uid://b7nqbjiulpvy7" path="res://Scenes/snap_point.tscn" id="9_oid2v"]
-[ext_resource type="PackedScene" uid="uid://ci8txoos1csur" path="res://Scenes/pour_minigame.tscn" id="11_fi6k0"]
+[ext_resource type="Script" uid="uid://dc5kwbjtudtbf" path="res://Scripts/soda_machine.gd" id="10_fcns5"]
+[ext_resource type="Texture2D" uid="uid://b3jw0w3iiybnm" path="res://Sprites/soda dispenser.png" id="11_3fl7w"]
 [ext_resource type="Script" uid="uid://n8redk1sub25" path="res://Scripts/popup_manager.gd" id="11_lnogb"]
 [ext_resource type="Shader" uid="uid://pfcfsgewkqa7" path="res://Shaders/BlurOverlay.gdshader" id="12_20iik"]
 [ext_resource type="Script" uid="uid://chrviwqwksxtv" path="res://Scripts/pour_manager.gd" id="13_usre1"]
@@ -15,9 +16,17 @@
 [ext_resource type="Shader" uid="uid://dc81186t2byk2" path="res://Shaders/basic.gdshader" id="17_oisvf"]
 [ext_resource type="Texture2D" uid="uid://baqiid42q5oo6" path="res://Sprites/guy.png" id="18_oisvf"]
 [ext_resource type="Texture2D" uid="uid://2ufw5vjc6wdv" path="res://Sprites/IceMachineNoScooper.png" id="18_uc5w8"]
+[ext_resource type="Texture2D" uid="uid://5htgxxyl8fyk" path="res://Sprites/UI/briefcase (1).png" id="19_n0gyp"]
+[ext_resource type="Texture2D" uid="uid://cod5n7lr3bw2l" path="res://Sprites/UI/square-bottle.png" id="20_nckre"]
+[ext_resource type="Texture2D" uid="uid://7ub4760g6lga" path="res://Sprites/UI/orange.png" id="21_13r6f"]
 [ext_resource type="Script" uid="uid://dmwy13pfff72u" path="res://Scripts/well_manager.gd" id="22_fcns5"]
+[ext_resource type="Texture2D" uid="uid://deaxg2crgvdkk" path="res://Sprites/UI/glass-shot.png" id="22_kufdd"]
+[ext_resource type="Texture2D" uid="uid://0cxxsiy5nrkk" path="res://Sprites/UI/gears.png" id="23_3ffap"]
+[ext_resource type="Script" uid="uid://js2u8nc4565b" path="res://Scripts/dialogue_ui.gd" id="23_3fl7w"]
+[ext_resource type="Script" uid="uid://chpcwx7he3t7h" path="res://Scripts/recipe_catalogue.gd" id="23_r152n"]
 [ext_resource type="Texture2D" uid="uid://bu2l1xpjgalkj" path="res://Sprites/barwall.png" id="24_uc5w8"]
 [ext_resource type="Script" uid="uid://dgnip1u8bs2ie" path="res://Scripts/serve_manager.gd" id="27_dlgao"]
+[ext_resource type="Texture2D" uid="uid://cftenbtwg67wq" path="res://Sprites/UI/check-mark.png" id="28_n0gyp"]
 [ext_resource type="Script" uid="uid://cj174shlrns1m" path="res://Scripts/inventory_manager.gd" id="30_13r6f"]
 [ext_resource type="Script" uid="uid://tel6arpblwpr" path="res://Scripts/item_catalogue.gd" id="31_13r6f"]
 
@@ -28,8 +37,8 @@ size = Vector2(1280, 720)
 shader = ExtResource("17_oisvf")
 shader_parameter/tint_color = Color(1, 1, 1, 1)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_nimp4"]
-size = Vector2(300, 147)
+[sub_resource type="CircleShape2D" id="CircleShape2D_fcns5"]
+radius = 78.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8t5iv"]
 size = Vector2(1920, 360)
@@ -37,14 +46,15 @@ size = Vector2(1920, 360)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uc5w8"]
 size = Vector2(65.9957, 102)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r152n"]
+size = Vector2(136, 63)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rcvm1"]
 shader = ExtResource("12_20iik")
 shader_parameter/blur_size = 2.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oisvf"]
 size = Vector2(640, 720)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3fl7w"]
 
 [node name="Scene" type="Node2D"]
 
@@ -68,19 +78,20 @@ shape = SubResource("RectangleShape2D_p6gg1")
 [node name="Objects" type="Node2D" parent="Workstation"]
 
 [node name="Drain" type="Area2D" parent="Workstation" groups=["interactable"]]
+position = Vector2(1824, 625)
 metadata/Item_Type = "Drain"
 
 [node name="Sprite2D" type="Sprite2D" parent="Workstation/Drain"]
 z_index = -1
 material = SubResource("ShaderMaterial_nimp4")
-position = Vector2(1744, 627)
-scale = Vector2(0.7, 0.7)
+position = Vector2(-9.59998, 5.40009)
+scale = Vector2(0.2, 0.2)
 texture = ExtResource("17_nimp4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Workstation/Drain"]
 visible = false
-position = Vector2(1743, 630.5)
-shape = SubResource("RectangleShape2D_nimp4")
+position = Vector2(-9.6001, 4.40002)
+shape = SubResource("CircleShape2D_fcns5")
 
 [node name="Well" type="Area2D" parent="."]
 position = Vector2(0, 720)
@@ -98,43 +109,6 @@ position = Vector2(960, 180)
 shape = SubResource("RectangleShape2D_8t5iv")
 
 [node name="Sections" type="Node2D" parent="Well"]
-
-[node name="Bottles Section" type="Node2D" parent="Well/Sections"]
-
-[node name="Objects" type="Node2D" parent="Well/Sections/Bottles Section"]
-
-[node name="Bottle Shelf" type="Node2D" parent="Well/Sections/Bottles Section"]
-position = Vector2(-202, 1)
-
-[node name="Snap Points Bottles" type="Node2D" parent="Well/Sections/Bottles Section/Bottle Shelf"]
-position = Vector2(0, -18)
-
-[node name="Snap Point" parent="Well/Sections/Bottles Section/Bottle Shelf/Snap Points Bottles" instance=ExtResource("9_oid2v")]
-visible = true
-position = Vector2(1140, 120)
-metadata/Occupied = true
-
-[node name="Snap Point2" parent="Well/Sections/Bottles Section/Bottle Shelf/Snap Points Bottles" instance=ExtResource("9_oid2v")]
-visible = true
-position = Vector2(1220, 120)
-metadata/Occupied = true
-
-[node name="Snap Point3" parent="Well/Sections/Bottles Section/Bottle Shelf/Snap Points Bottles" instance=ExtResource("9_oid2v")]
-visible = true
-position = Vector2(1300, 120)
-
-[node name="Snap Point4" parent="Well/Sections/Bottles Section/Bottle Shelf/Snap Points Bottles" instance=ExtResource("9_oid2v")]
-visible = true
-position = Vector2(1380, 120)
-
-[node name="ColorRect" type="ColorRect" parent="Well/Sections/Bottles Section/Bottle Shelf"]
-z_index = -1
-offset_left = 1096.0
-offset_top = 153.0
-offset_right = 1896.0
-offset_bottom = 193.0
-mouse_filter = 2
-color = Color(0.205921, 0.25119, 0.257356, 1)
 
 [node name="Items Section" type="Node2D" parent="Well/Sections"]
 visible = false
@@ -171,6 +145,79 @@ offset_bottom = 193.0
 mouse_filter = 2
 color = Color(0.205921, 0.25119, 0.257356, 1)
 
+[node name="Bottles Section" type="Node2D" parent="Well/Sections"]
+
+[node name="Objects" type="Node2D" parent="Well/Sections/Bottles Section"]
+
+[node name="Bottle Shelf" type="Node2D" parent="Well/Sections/Bottles Section"]
+position = Vector2(91, 96)
+
+[node name="Snap Points Bottles" type="Node2D" parent="Well/Sections/Bottles Section/Bottle Shelf"]
+position = Vector2(0, -7)
+
+[node name="Snap Point" parent="Well/Sections/Bottles Section/Bottle Shelf/Snap Points Bottles" instance=ExtResource("9_oid2v")]
+visible = true
+metadata/Occupied = true
+
+[node name="Snap Point2" parent="Well/Sections/Bottles Section/Bottle Shelf/Snap Points Bottles" instance=ExtResource("9_oid2v")]
+visible = true
+position = Vector2(100, 0)
+metadata/Occupied = true
+
+[node name="Snap Point3" parent="Well/Sections/Bottles Section/Bottle Shelf/Snap Points Bottles" instance=ExtResource("9_oid2v")]
+visible = true
+position = Vector2(200, 0)
+
+[node name="Snap Point4" parent="Well/Sections/Bottles Section/Bottle Shelf/Snap Points Bottles" instance=ExtResource("9_oid2v")]
+visible = true
+position = Vector2(300, 0)
+
+[node name="ColorRect" type="ColorRect" parent="Well/Sections/Bottles Section/Bottle Shelf"]
+z_index = -1
+offset_left = -41.0
+offset_top = 52.0
+offset_right = 759.0
+offset_bottom = 92.0
+mouse_filter = 2
+color = Color(0.205921, 0.25119, 0.257356, 1)
+
+[node name="Glassware Section" type="Node2D" parent="Well/Sections"]
+visible = false
+
+[node name="Objects" type="Node2D" parent="Well/Sections/Glassware Section"]
+
+[node name="Glass Shelf" type="Node2D" parent="Well/Sections/Glassware Section"]
+position = Vector2(50, 80)
+
+[node name="Snap Points Glasses" type="Node2D" parent="Well/Sections/Glassware Section/Glass Shelf"]
+position = Vector2(44, 3)
+
+[node name="Snap Point" parent="Well/Sections/Glassware Section/Glass Shelf/Snap Points Glasses" instance=ExtResource("9_oid2v")]
+visible = true
+metadata/Occupied = true
+
+[node name="Snap Point2" parent="Well/Sections/Glassware Section/Glass Shelf/Snap Points Glasses" instance=ExtResource("9_oid2v")]
+visible = true
+position = Vector2(100, 0)
+metadata/Occupied = true
+
+[node name="Snap Point3" parent="Well/Sections/Glassware Section/Glass Shelf/Snap Points Glasses" instance=ExtResource("9_oid2v")]
+visible = true
+position = Vector2(200, 0)
+
+[node name="Snap Point4" parent="Well/Sections/Glassware Section/Glass Shelf/Snap Points Glasses" instance=ExtResource("9_oid2v")]
+visible = true
+position = Vector2(300, 0)
+
+[node name="ColorRect" type="ColorRect" parent="Well/Sections/Glassware Section/Glass Shelf"]
+z_index = -1
+offset_left = -1.0
+offset_top = 50.0
+offset_right = 799.0
+offset_bottom = 90.0
+mouse_filter = 2
+color = Color(0.205921, 0.25119, 0.257356, 1)
+
 [node name="Appliances Section" type="Node2D" parent="Well/Sections"]
 visible = false
 
@@ -200,43 +247,26 @@ position = Vector2(1657, 93)
 visible = true
 position = Vector2(3, -2)
 
-[node name="Glassware Section" type="Node2D" parent="Well/Sections"]
-visible = false
-
-[node name="Objects" type="Node2D" parent="Well/Sections/Glassware Section"]
-
-[node name="Glass Shelf" type="Node2D" parent="Well/Sections/Glassware Section"]
-position = Vector2(-202, 1)
-
-[node name="Snap Points Glasses" type="Node2D" parent="Well/Sections/Glassware Section/Glass Shelf"]
-position = Vector2(0, -18)
-
-[node name="Snap Point" parent="Well/Sections/Glassware Section/Glass Shelf/Snap Points Glasses" instance=ExtResource("9_oid2v")]
-visible = true
-position = Vector2(1140, 120)
-metadata/Occupied = true
-
-[node name="Snap Point2" parent="Well/Sections/Glassware Section/Glass Shelf/Snap Points Glasses" instance=ExtResource("9_oid2v")]
-visible = true
-position = Vector2(1220, 120)
-metadata/Occupied = true
-
-[node name="Snap Point3" parent="Well/Sections/Glassware Section/Glass Shelf/Snap Points Glasses" instance=ExtResource("9_oid2v")]
-visible = true
-position = Vector2(1300, 120)
-
-[node name="Snap Point4" parent="Well/Sections/Glassware Section/Glass Shelf/Snap Points Glasses" instance=ExtResource("9_oid2v")]
-visible = true
-position = Vector2(1380, 120)
-
-[node name="ColorRect" type="ColorRect" parent="Well/Sections/Glassware Section/Glass Shelf"]
+[node name="Soda Machine" type="Area2D" parent="Well/Sections/Appliances Section"]
 z_index = -1
-offset_left = 1096.0
-offset_top = 153.0
-offset_right = 1896.0
-offset_bottom = 193.0
-mouse_filter = 2
-color = Color(0.205921, 0.25119, 0.257356, 1)
+position = Vector2(1337, 19)
+script = ExtResource("10_fcns5")
+
+[node name="Sprite2D" type="Sprite2D" parent="Well/Sections/Appliances Section/Soda Machine"]
+position = Vector2(81.4001, 183.6)
+scale = Vector2(0.22, 0.2)
+texture = ExtResource("11_3fl7w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Well/Sections/Appliances Section/Soda Machine"]
+position = Vector2(83, 87.5)
+shape = SubResource("RectangleShape2D_r152n")
+
+[node name="Snap Points Soda" type="Node2D" parent="Well/Sections/Appliances Section/Soda Machine"]
+position = Vector2(78, 260)
+
+[node name="Snap Point" parent="Well/Sections/Appliances Section/Soda Machine/Snap Points Soda" instance=ExtResource("9_oid2v")]
+visible = true
+position = Vector2(3, -2)
 
 [node name="InteractionManager" type="Node2D" parent="."]
 script = ExtResource("9_f6sb3")
@@ -246,10 +276,6 @@ script = ExtResource("13_usre1")
 
 [node name="PopupManager" type="CanvasLayer" parent="."]
 script = ExtResource("11_lnogb")
-
-[node name="PourMinigame" parent="PopupManager" groups=["popup"] instance=ExtResource("11_fi6k0")]
-visible = false
-position = Vector2(958, 362)
 
 [node name="BlurOverlay" type="ColorRect" parent="PopupManager"]
 visible = false
@@ -264,20 +290,20 @@ input_pickable = false
 
 [node name="Wall" type="Sprite2D" parent="Dialogue"]
 z_index = -10
-position = Vector2(535, 275)
-scale = Vector2(0.8, 0.55)
+position = Vector2(114, 296)
+scale = Vector2(0.8, 0.6)
 texture = ExtResource("24_uc5w8")
 
 [node name="Guy" type="Sprite2D" parent="Dialogue"]
 z_index = -8
-position = Vector2(303, 375)
+position = Vector2(309, 437)
 scale = Vector2(0.35, 0.35)
 texture = ExtResource("18_oisvf")
 
 [node name="Counter" type="Sprite2D" parent="Dialogue"]
 modulate = Color(0.785427, 0.795609, 0.78451, 1)
 z_index = -6
-position = Vector2(320, 633.5)
+position = Vector2(320, 671)
 scale = Vector2(0.41, 0.194)
 texture = ExtResource("1_8t5iv")
 
@@ -289,7 +315,7 @@ shape = SubResource("RectangleShape2D_oisvf")
 [node name="Objects" type="Node2D" parent="Dialogue"]
 
 [node name="Snap Points Serve" type="Node2D" parent="Dialogue"]
-position = Vector2(529, 628)
+position = Vector2(487, 627)
 
 [node name="Snap Point" parent="Dialogue/Snap Points Serve" instance=ExtResource("9_oid2v")]
 visible = true
@@ -298,36 +324,40 @@ visible = true
 script = ExtResource("22_fcns5")
 
 [node name="Well Sections" type="PanelContainer" parent="WellManager"]
-offset_left = 1848.0
-offset_top = 744.0
-offset_right = 1908.0
-offset_bottom = 1064.0
-scale = Vector2(0.998373, 1)
-theme_override_styles/panel = SubResource("StyleBoxFlat_3fl7w")
+offset_left = 1846.0
+offset_top = 735.0
+offset_right = 2366.0
+offset_bottom = 3495.0
+scale = Vector2(0.12, 0.12)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="WellManager/Well Sections"]
 layout_mode = 2
-theme_override_constants/separation = 10
+theme_override_constants/separation = 40
 
-[node name="Bottles Button" type="Button" parent="WellManager/Well Sections/VBoxContainer"]
+[node name="Kit Button" type="Button" parent="WellManager/Well Sections/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+icon = ExtResource("19_n0gyp")
 
-[node name="Additives Button" type="Button" parent="WellManager/Well Sections/VBoxContainer"]
+[node name="Rack Button" type="Button" parent="WellManager/Well Sections/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+icon = ExtResource("20_nckre")
 
-[node name="Tools Button" type="Button" parent="WellManager/Well Sections/VBoxContainer"]
+[node name="Glassware Button" type="Button" parent="WellManager/Well Sections/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+icon = ExtResource("22_kufdd")
 
 [node name="Appliances Button" type="Button" parent="WellManager/Well Sections/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+icon = ExtResource("23_3ffap")
 
-[node name="Inventory Button" type="Button" parent="WellManager/Well Sections/VBoxContainer"]
+[node name="Additives Button" type="Button" parent="WellManager/Well Sections/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+icon = ExtResource("21_13r6f")
 
 [node name="ServeManager" type="Node2D" parent="."]
 script = ExtResource("27_dlgao")
@@ -337,3 +367,25 @@ script = ExtResource("30_13r6f")
 
 [node name="ItemCatalogue" type="Node2D" parent="."]
 script = ExtResource("31_13r6f")
+
+[node name="DialogueUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 20.0
+offset_top = 140.0
+offset_right = 20.0
+offset_bottom = 140.0
+script = ExtResource("23_3fl7w")
+
+[node name="ServeButton" type="Button" parent="DialogueUI"]
+visible = false
+layout_mode = 0
+offset_left = 543.0
+offset_top = 418.0
+offset_right = 1062.0
+offset_bottom = 937.0
+scale = Vector2(0.1, 0.1)
+icon = ExtResource("28_n0gyp")
+
+[node name="RecipeCatalogue" type="Node2D" parent="."]
+script = ExtResource("23_r152n")

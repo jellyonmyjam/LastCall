@@ -4,13 +4,14 @@ var popup_interactions: = {
 	["Bottle", "Jigger"]: "Pouring",
 }
 
-var pour_interactions: = [["Jigger","Drain"],["Shaker","Drain"],["Glass","Drain"],["Jigger","Shaker"],["Shaker","Glass"],
+var pour_interactions: = [["Jigger","Drain"],["Shaker","Drain"],["Glass","Drain"],["Jigger","Shaker"],["Jigger","Glass"],["Shaker","Glass"],
 ["Scooper","Glass"],["Scooper","Shaker"]]
 
 @onready var popup_manager: CanvasLayer = $"../PopupManager"
 @onready var pour_manager: Node2D = $"../PourManager"
 @onready var item_catalogue: Node2D = $"../ItemCatalogue"
 @onready var inventory_manager: Node2D = $"../InventoryManager"
+@onready var drain: Area2D = $"../Workstation/Drain"
 
 signal minigame_request(minigame: String)
 signal initiate_pour
@@ -46,7 +47,11 @@ func object_interaction(dragged_object: Area2D, target_object: Area2D) -> void:
 	
 	if dragged_object and target_object:
 		var dragged_type = dragged_object.item_type
-		var target_type = target_object.item_type
+		var target_type = ""
+		if target_object == drain:
+			target_type = "Drain"
+		else:
+			target_type = target_object.item_type
 		var key = [dragged_type, target_type]
 		print("Interaction: ",dragged_type," -> ",target_type)
 		
@@ -75,7 +80,11 @@ func interaction_highlight(dragged_object: Area2D, target_object: Area2D) -> voi
 	
 	if dragged_object and target_object:
 		var dragged_type = dragged_object.item_type
-		var target_type = target_object.item_type
+		var target_type = ""
+		if target_object == drain:
+			target_type = "Drain"
+		else:
+			target_type = target_object.item_type
 		var key = [dragged_type, target_type]
 		var sprite = target_object.get_node("Sprite2D")
 		

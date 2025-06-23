@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://1t460x3ppp0j"]
 
 [ext_resource type="Script" uid="uid://eah4mumgkd3s" path="res://Scripts/draggable.gd" id="1_gs1aj"]
-[ext_resource type="Texture2D" uid="uid://bku2h44giaddo" path="res://Sprites/bottle_small.png" id="2_ejobn"]
-[ext_resource type="Texture2D" uid="uid://ci64k4cbneep5" path="res://Sprites/wine-bottle1.png" id="3_0axmp"]
+[ext_resource type="Texture2D" uid="uid://31sxqk03waj8" path="res://Sprites/Bottles/WhiskeySide.png" id="2_gs1aj"]
+[ext_resource type="Texture2D" uid="uid://dcc50mqy74wic" path="res://Sprites/Bottles/WhiskeyTop.png" id="3_gs1aj"]
 [ext_resource type="Shader" uid="uid://7hd0tlfiehci" path="res://Shaders/AreaSwitch.gdshader" id="4_krk3q"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lrus4"]
@@ -16,20 +16,22 @@ size = Vector2(57, 168)
 
 [node name="Base Bottle" type="Area2D" groups=["interactable"]]
 script = ExtResource("1_gs1aj")
-texture_well = ExtResource("2_ejobn")
+texture_well = ExtResource("2_gs1aj")
 item_type = "Bottle"
-texture_workstation = ExtResource("3_0axmp")
-size_well = Vector2(30, 80)
-size_workstation = Vector2(48, 76)
+texture_workstation = ExtResource("3_gs1aj")
+size_well = Vector2(35, 100)
+size_workstation = Vector2(40, 70)
 metadata/id = 0
 metadata/Name = ""
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_lrus4")
 position = Vector2(0, 10)
-scale = Vector2(0.4, 0.4)
-texture = ExtResource("2_ejobn")
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("2_gs1aj")
+offset = Vector2(0, -10)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 5)
+scale = Vector2(0.8, 0.8)
 shape = SubResource("RectangleShape2D_lrus4")

@@ -248,7 +248,7 @@ func switch_area(area: Area2D) -> void:
 		collision_shape.shape = area_shape
 	elif area == workstation:
 		sprite.texture = texture_workstation
-		scale = Vector2(1.5,1.5)
+		scale = Vector2(1.8,1.8)
 		var area_shape = RectangleShape2D.new()
 		area_shape.extents = size_workstation
 		collision_shape.shape = area_shape
