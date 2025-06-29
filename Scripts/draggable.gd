@@ -3,7 +3,7 @@ extends Area2D
 var dragging = false
 var can_drag = true
 var offset = Vector2()
-var last_area := ""
+var last_area = "Well"
 var snap_threshold = 50.0
 var original_position = Vector2()
 static var dragged_object: Area2D = null
@@ -31,15 +31,19 @@ signal cleared_hover(target_object: Area2D)
 @export var size_well: Vector2 = Vector2(0,0)
 @export var size_workstation: Vector2 = Vector2(0,0)
 @export var snap_offset: Vector2 = Vector2(0,0)
-@onready var interaction_manager: Node2D = get_tree().get_root().get_node("Scene/InteractionManager")
+@export var area_resize: Vector2 = Vector2(0,0)
+@onready var interaction_manager: Node2D = get_tree().get_root().get_node("Scene/Scripts/InteractionManager")
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 @onready var sprite: Sprite2D = $Sprite2D
+@onready var hover_manager = get_tree().get_root().get_node("Scene/Scripts/HoverManager")
 
 func _ready():
 	#Connect to InteractionManager
 	connect("interaction_request", Callable(interaction_manager, "object_interaction"))
 	connect("object_hover", Callable(interaction_manager, "interaction_highlight"))
 	connect("cleared_hover", Callable(interaction_manager, "clear_highlight"))
+	connect("mouse_entered", Callable(hover_manager, "on_hover_entered").bind(self))
+	connect("mouse_exited", Callable(hover_manager, "on_hover_exited").bind(self))
 	
 	# Duplicate shader at start
 	add_to_group("draggable")
@@ -248,7 +252,7 @@ func switch_area(area: Area2D) -> void:
 		collision_shape.shape = area_shape
 	elif area == workstation:
 		sprite.texture = texture_workstation
-		scale = Vector2(1.8,1.8)
+		scale = area_resize
 		var area_shape = RectangleShape2D.new()
 		area_shape.extents = size_workstation
 		collision_shape.shape = area_shape

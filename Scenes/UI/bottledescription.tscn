@@ -1,0 +1,107 @@
+[gd_scene load_steps=2 format=3 uid="uid://dhfsf55n7kvfw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bvu4c"]
+bg_color = Color(0.277528, 0.277528, 0.277528, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="Ingredient Description" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Panel" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 20
+
+[node name="Name" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Name"
+
+[node name="MarginContainer2" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 20
+
+[node name="Quality" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "★"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_right = 60
+theme_override_constants/margin_bottom = 20
+
+[node name="Type" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer2/MarginContainer"]
+layout_mode = 2
+text = "Type"
+
+[node name="MarginContainer2" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 20
+
+[node name="Fill" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer2/MarginContainer2"]
+z_index = 5
+layout_mode = 2
+text = "25/25"
+horizontal_alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer2/MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_styles/background = SubResource("StyleBoxFlat_bvu4c")
+step = 10.0
+value = 50.0
+show_percentage = false
+
+[node name="Description" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "\"This is a description of the ingredient. This is the second sentence.\""
+autowrap_mode = 2

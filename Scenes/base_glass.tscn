@@ -23,6 +23,7 @@ item_type = "Glass"
 texture_workstation = ExtResource("3_xy4n1")
 size_well = Vector2(50, 60)
 size_workstation = Vector2(50, 60)
+area_resize = Vector2(1.5, 1.5)
 metadata/id = 0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

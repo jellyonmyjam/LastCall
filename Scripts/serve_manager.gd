@@ -3,11 +3,11 @@ extends Node2D
 var last_state = false
 var order = "Daiquiri"
 var snap_position = null
-@onready var serve_button: Button = $"../DialogueUI/ServeButton"
-@onready var snap_point_serve: Node2D = $"../Dialogue/Snap Points Serve/Snap Point"
-@onready var objects: Node2D = $"../Dialogue/Objects"
+@onready var serve_button: Button = $"../../DialogueUI/ServeButton"
+@onready var snap_point_serve: Node2D = $"../../Dialogue/Snap Points Serve/Snap Point"
+@onready var objects: Node2D = $"../../Dialogue/Objects"
 @onready var inventory_manager: Node2D = $"../InventoryManager"
-@onready var dialogue_ui: Control = $"../DialogueUI"
+@onready var dialogue_ui: Control = $"../../DialogueUI"
 @onready var recipe_catalogue: Node2D = $"../RecipeCatalogue"
 
 
@@ -32,7 +32,8 @@ func serve_drink():
 				var prep = inventory_manager.glass_inventory[id]["prep"]
 				var has_ice = inventory_manager.glass_inventory[id]["has_ice"]
 				var has_soda = inventory_manager.glass_inventory[id]["has_soda"]
-				score_drink(contents,glass_type,prep,has_ice,has_soda)
+				var score = score_drink(contents,glass_type,prep,has_ice,has_soda)
+				print(score)
 				object.queue_free()
 				break
 
@@ -60,7 +61,7 @@ func score_drink(contents,glass_type,prep,has_ice,has_soda):
 			score += 20
 	
 	score = (score/total_score) * 70
-	
+
 	for ingredient in contents:
 		if not order_contents.has(ingredient):
 			score -= contents[ingredient] * 20

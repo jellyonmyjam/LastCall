@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://d1av7k5vnyhg2"]
 
 [ext_resource type="Script" uid="uid://eah4mumgkd3s" path="res://Scripts/draggable.gd" id="1_q0icf"]
-[ext_resource type="Texture2D" uid="uid://2vr7gaep8618" path="res://Sprites/jigger_small.png" id="2_2vrlx"]
-[ext_resource type="Texture2D" uid="uid://hxsp5jru741t" path="res://Sprites/jigger_large.png" id="3_dnn5c"]
+[ext_resource type="Texture2D" uid="uid://r3xi7cx3t8al" path="res://Sprites/Tools/JiggerSide.png" id="2_q0icf"]
+[ext_resource type="Texture2D" uid="uid://m52yvbhaf52j" path="res://Sprites/Tools/JiggerTop.png" id="3_2vrlx"]
 [ext_resource type="Shader" uid="uid://7hd0tlfiehci" path="res://Shaders/AreaSwitch.gdshader" id="4_4b2ko"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_f6sb3"]
@@ -12,22 +12,24 @@ shader_parameter/boundary_max = Vector2(1920, 1080)
 shader_parameter/tint_color = Color(1, 1, 1, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f6sb3"]
-size = Vector2(53, 86)
+size = Vector2(58, 108)
 
 [node name="Jigger" type="Area2D" groups=["interactable"]]
 script = ExtResource("1_q0icf")
-texture_well = ExtResource("2_2vrlx")
+texture_well = ExtResource("2_q0icf")
 item_type = "Jigger"
-texture_workstation = ExtResource("3_dnn5c")
+texture_workstation = ExtResource("3_2vrlx")
 size_well = Vector2(35, 50)
 size_workstation = Vector2(32, 55)
+snap_offset = Vector2(0, 20)
+area_resize = Vector2(1, 1.1)
 metadata/id = 0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_f6sb3")
-scale = Vector2(0.25, 0.3)
-texture = ExtResource("2_2vrlx")
+scale = Vector2(0.35, 0.3)
+texture = ExtResource("2_q0icf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, 2)
+position = Vector2(0, 7)
 shape = SubResource("RectangleShape2D_f6sb3")

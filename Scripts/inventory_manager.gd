@@ -1,36 +1,42 @@
 extends Node2D
 
-@onready var snap_points_bottles: Node2D = $"../Well/Sections/Bottles Section/Bottle Shelf/Snap Points Bottles"
-@onready var bottle_objects: Node2D = $"../Well/Sections/Bottles Section/Objects"
-@onready var snap_points_glasses: Node2D = $"../Well/Sections/Glassware Section/Glass Shelf/Snap Points Glasses"
-@onready var glass_objects: Node2D = $"../Well/Sections/Glassware Section/Objects"
-@onready var snap_points_serve: Node2D = $"../Dialogue/Snap Points Serve"
-@onready var snap_points_tools: Node2D = $"../Well/Sections/Items Section/Equipment Shelf/Snap Points Equipment"
-@onready var tool_objects: Node2D = $"../Well/Sections/Items Section/Objects"
-@onready var snap_points_soda: Node2D = $"../Well/Sections/Appliances Section/Soda Machine/Snap Points Soda"
+@onready var snap_points_bottles: Node2D = $"../../Well/Sections/Bottles Section/Bottle Shelf/Snap Points Bottles"
+@onready var bottle_objects: Node2D = $"../../Well/Sections/Bottles Section/Objects"
+@onready var snap_points_glasses: Node2D = $"../../Well/Sections/Glassware Section/Glass Shelf/Snap Points Glasses"
+@onready var glass_objects: Node2D = $"../../Well/Sections/Glassware Section/Objects"
+@onready var snap_points_serve: Node2D = $"../../Dialogue/Snap Points Serve"
+@onready var snap_points_tools: Node2D = $"../../Well/Sections/Items Section/Equipment Shelf/Snap Points Equipment"
+@onready var tool_objects: Node2D = $"../../Well/Sections/Items Section/Objects"
+@onready var snap_points_soda: Node2D = $"../../Well/Sections/Appliances Section/Soda Machine/Snap Points Soda"
 @export var bottle_scene := preload("res://Scenes/base_bottle.tscn")
 @export var glass_scene := preload("res://Scenes/base_glass.tscn")
 @export var jigger_scene := preload("res://Scenes/jigger.tscn")
 @export var shaker_scene := preload("res://Scenes/shaker.tscn")
+@export var shaker_lid_scene := preload("res://Scenes/shaker_lid.tscn")
 @onready var item_catalogue: Node2D = $"../ItemCatalogue"
 
 
 var bottle_inventory = {
 	1: {"name": "Spudmash", "fill_level": 25.0},
-	2: {"name": "Molassic", "fill_level": 25.0},
-	3: {"name": "Knotwood Reserve", "fill_level": 25.0},
-	4: {"name": "Agent Green", "fill_level": 10.0}
+	2: {"name": "Knotroot Reserve", "fill_level": 25.0},
+	3: {"name": "Mollassex Dark", "fill_level": 25.0},
+	4: {"name": "Tang-O Deluxe", "fill_level": 10.0},
+	5: {"name": "Pitfruit Synth", "fill_level": 25.0},
+	6: {"name": "Aro-Agent Red", "fill_level": 25.0},
+	7: {"name": "Vat Swill", "fill_level": 25.0},
+	8: {"name": "Glucodex", "fill_level": 10.0}
 }
 
 var glass_inventory = {
-	1: {"type": "Rocks", "fill_level": 0.0, "contents": {}, "prep": "built", "has_ice": false, "has_soda": false},
-	2: {"type": "Highball", "fill_level": 0.0, "contents": {}, "prep": "built", "has_ice": false, "has_soda": false},
-	3: {"type": "Mug", "fill_level": 0.0, "contents": {}, "prep": "built", "has_ice": false, "has_soda": false}
+	1: {"type": "rocks", "fill_level": 0.0, "contents": {}, "prep": "built", "has_ice": false, "has_soda": false},
+	2: {"type": "highball", "fill_level": 0.0, "contents": {}, "prep": "built", "has_ice": false, "has_soda": false},
+	3: {"type": "mug", "fill_level": 0.0, "contents": {}, "prep": "built", "has_ice": false, "has_soda": false}
 }
 
 var tool_inventory := {
 	1: {"type": "Jigger", "fill_level": 0.0, "jigger_contents": "", "scene": jigger_scene},
-	2: {"type": "Shaker", "fill_level": 0.0, "contents": {}, "has_ice": false, "scene": shaker_scene},
+	2: {"type": "Shaker", "fill_level": 0.0, "contents": {}, "shaken": false, "has_ice": false, "scene": shaker_scene},
+	3: {"type": "Shaker Lid", "scene": shaker_lid_scene}
 }
 
 func _ready():

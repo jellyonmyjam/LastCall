@@ -1,0 +1,153 @@
+[gd_scene load_steps=5 format=3 uid="uid://nmmri1ke723t"]
+
+[ext_resource type="Script" uid="uid://bqsmun6vvsucf" path="res://Scripts/shaker_minigame.gd" id="1_beew5"]
+[ext_resource type="Texture2D" uid="uid://f6sq5sqohqno" path="res://Sprites/grey-circle.png" id="2_qwpvd"]
+[ext_resource type="Texture2D" uid="uid://bxfmpksjjljyo" path="res://Sprites/Tools/Shaker2.png" id="3_q23o4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d6flh"]
+radius = 306.956
+
+[node name="Shaker Minigame" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Knob" type="Area2D" parent="."]
+z_index = 10
+position = Vector2(0, 170)
+scale = Vector2(1.5, 1.5)
+script = ExtResource("1_beew5")
+
+[node name="Sprite2D" type="Sprite2D" parent="Knob"]
+position = Vector2(-2.38419e-07, -2.38419e-07)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_qwpvd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Knob"]
+scale = Vector2(0.05, 0.05)
+shape = SubResource("CircleShape2D_d6flh")
+
+[node name="PopupPanel" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = -500.0
+offset_top = -300.0
+offset_right = 500.0
+offset_bottom = 300.0
+mouse_filter = 2
+
+[node name="Bar" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = -350.0
+offset_top = 120.0
+offset_right = 350.0
+offset_bottom = 220.0
+mouse_filter = 2
+color = Color(0.808998, 0.808998, 0.808998, 1)
+
+[node name="1" type="ColorRect" parent="Bar"]
+layout_mode = 0
+offset_right = 50.0
+offset_bottom = 100.0
+mouse_filter = 2
+color = Color(0.662745, 0.662745, 0.662745, 0)
+
+[node name="2" type="ColorRect" parent="Bar"]
+layout_mode = 0
+offset_left = 50.0
+offset_right = 100.0
+offset_bottom = 100.0
+mouse_filter = 2
+color = Color(0.662452, 0.662452, 0.662452, 1)
+
+[node name="3" type="ColorRect" parent="Bar"]
+layout_mode = 0
+offset_left = 100.0
+offset_right = 150.0
+offset_bottom = 100.0
+mouse_filter = 2
+color = Color(0.462291, 0.462291, 0.462291, 1)
+
+[node name="4" type="ColorRect" parent="Bar"]
+layout_mode = 0
+offset_left = 150.0
+offset_right = 200.0
+offset_bottom = 100.0
+mouse_filter = 2
+color = Color(0.662452, 0.662452, 0.662452, 1)
+
+[node name="Middle" type="ColorRect" parent="Bar"]
+layout_mode = 0
+offset_left = 200.0
+offset_right = 500.0
+offset_bottom = 100.0
+mouse_filter = 2
+color = Color(0.662745, 0.662745, 0.662745, 0)
+
+[node name="5" type="ColorRect" parent="Bar"]
+layout_mode = 0
+offset_left = 500.0
+offset_right = 550.0
+offset_bottom = 100.0
+mouse_filter = 2
+color = Color(0.662452, 0.662452, 0.662452, 1)
+
+[node name="6" type="ColorRect" parent="Bar"]
+layout_mode = 0
+offset_left = 550.0
+offset_right = 600.0
+offset_bottom = 100.0
+mouse_filter = 2
+color = Color(0.462291, 0.462291, 0.462291, 1)
+
+[node name="7" type="ColorRect" parent="Bar"]
+layout_mode = 0
+offset_left = 600.0
+offset_right = 650.0
+offset_bottom = 100.0
+mouse_filter = 2
+color = Color(0.662452, 0.662452, 0.662452, 1)
+
+[node name="8" type="ColorRect" parent="Bar"]
+layout_mode = 0
+offset_left = 650.0
+offset_right = 700.0
+offset_bottom = 100.0
+mouse_filter = 2
+color = Color(0.662745, 0.662745, 0.662745, 0)
+
+[node name="Shaker" type="Sprite2D" parent="."]
+position = Vector2(0, -80)
+rotation = -1.5708
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("3_q23o4")
+
+[node name="LeftScore" type="Label" parent="."]
+layout_mode = 0
+offset_left = -300.0
+offset_top = 79.0
+offset_right = -196.0
+offset_bottom = 121.0
+theme_override_colors/font_color = Color(0.119004, 0.243052, 0.447917, 1)
+theme_override_font_sizes/font_size = 30
+
+[node name="RightScore" type="Label" parent="."]
+layout_mode = 0
+offset_left = 196.0
+offset_top = 80.0
+offset_right = 300.0
+offset_bottom = 122.0
+theme_override_colors/font_color = Color(0.119004, 0.243052, 0.447917, 1)
+theme_override_font_sizes/font_size = 30
+horizontal_alignment = 2
+
+[node name="ShakeMeter" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_left = -350.0
+offset_top = -260.0
+offset_right = 350.0
+offset_bottom = -230.0
+show_percentage = false

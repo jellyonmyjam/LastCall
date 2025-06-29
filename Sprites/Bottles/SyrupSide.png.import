@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ddx5i306rv2ay"
-path="res://.godot/imported/shaker_480x480.png-a5406c47a8bd224288e54731e131ae3e.ctex"
+uid="uid://bolbalu7kwwny"
+path="res://.godot/imported/SyrupSide.png-6318638727899902218bc263f7389eaa.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/shaker_480x480.png"
-dest_files=["res://.godot/imported/shaker_480x480.png-a5406c47a8bd224288e54731e131ae3e.ctex"]
+source_file="res://Sprites/Bottles/SyrupSide.png"
+dest_files=["res://.godot/imported/SyrupSide.png-6318638727899902218bc263f7389eaa.ctex"]
 
 [params]
 

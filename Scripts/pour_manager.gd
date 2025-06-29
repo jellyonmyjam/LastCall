@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var drain: Area2D = $"../Workstation/Drain"
+@onready var drain: Area2D = $"../../Workstation/Drain"
 @onready var inventory_manager: Node2D = $"../InventoryManager"
 var target_object: Area2D = null
 var dragged_object: Area2D = null
@@ -55,7 +55,6 @@ func initiate_pour():
 		print(contents)
 			
 	if target_type == "Glass" and dragged_type == "Jigger":
-		print("test2")
 		var fill_level: float = inventory_manager.tool_inventory[dragged_id]["fill_level"]
 		var ingredient: String = inventory_manager.tool_inventory[dragged_id]["jigger_contents"]
 		var contents: Dictionary = inventory_manager.glass_inventory[target_id]["contents"]
@@ -64,7 +63,6 @@ func initiate_pour():
 			if contents.has(ingredient):
 				contents[ingredient] += fill_level
 			else:
-				print("test")
 				contents[ingredient] = fill_level
 
 			inventory_manager.glass_inventory[target_id]["contents"] = contents
@@ -78,9 +76,11 @@ func initiate_pour():
 
 		inventory_manager.glass_inventory[target_id]["contents"] = contents.duplicate()
 		inventory_manager.glass_inventory[target_id]["fill_level"] = fill_level
-		inventory_manager.glass_inventory[target_id]["prep"] = "shaken"
+		if inventory_manager.tool_inventory[dragged_id]["shaken"] == true:
+			inventory_manager.glass_inventory[target_id]["prep"] = "shaken"
 
 		inventory_manager.tool_inventory[dragged_id]["contents"] = {}
 		inventory_manager.tool_inventory[dragged_id]["fill_level"] = 0.0
+		inventory_manager.tool_inventory[dragged_id]["shaken"] = false
 		print(contents)
 		

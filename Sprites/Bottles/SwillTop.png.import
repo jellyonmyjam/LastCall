@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://hxsp5jru741t"
-path="res://.godot/imported/jigger_large.png-f0cb464841f5900593c801bc32e6167a.ctex"
+uid="uid://k4u06p5bfp5e"
+path="res://.godot/imported/SwillTop.png-ee45d4b48f9bf11e18bcf76f68638081.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/jigger_large.png"
-dest_files=["res://.godot/imported/jigger_large.png-f0cb464841f5900593c801bc32e6167a.ctex"]
+source_file="res://Sprites/Bottles/SwillTop.png"
+dest_files=["res://.godot/imported/SwillTop.png-ee45d4b48f9bf11e18bcf76f68638081.ctex"]
 
 [params]
 

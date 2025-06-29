@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://u0blitt8827b"
-path="res://.godot/imported/Wall.jpg-044168ba9f18b548330b183f0224cb2b.ctex"
+uid="uid://leejmqf6ok8"
+path="res://.godot/imported/ShakerSide.png-e10151cccaa7659e54a45ea35a972ff0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Wall.jpg"
-dest_files=["res://.godot/imported/Wall.jpg-044168ba9f18b548330b183f0224cb2b.ctex"]
+source_file="res://Sprites/Tools/ShakerSide.png"
+dest_files=["res://.godot/imported/ShakerSide.png-e10151cccaa7659e54a45ea35a972ff0.ctex"]
 
 [params]
 

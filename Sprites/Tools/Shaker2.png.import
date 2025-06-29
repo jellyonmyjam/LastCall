@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://crxswm5css85f"
-path="res://.godot/imported/shaker_large.png-dc00676cacb81e8c91e95418d5b97e46.ctex"
+uid="uid://bxfmpksjjljyo"
+path="res://.godot/imported/Shaker2.png-d776a60842b59affa8ef9235bc682658.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/shaker_large.png"
-dest_files=["res://.godot/imported/shaker_large.png-dc00676cacb81e8c91e95418d5b97e46.ctex"]
+source_file="res://Sprites/Tools/Shaker2.png"
+dest_files=["res://.godot/imported/Shaker2.png-d776a60842b59affa8ef9235bc682658.ctex"]
 
 [params]
 

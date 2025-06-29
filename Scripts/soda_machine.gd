@@ -4,7 +4,7 @@ var last_state = false
 var can_pour
 @onready var snap_point_soda: Node2D = $"Snap Points Soda/Snap Point"
 @onready var objects: Node2D = $"../Objects"
-@onready var inventory_manager: Node2D = $"../../../../InventoryManager"
+@onready var inventory_manager: Node2D = $"../../../../Scripts/InventoryManager"
 
 		
 func _input_event(_viewport: Viewport, event: InputEvent, _shape_idx: int) -> void:

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://2vr7gaep8618"
-path="res://.godot/imported/jigger_small.png-e96e7ac4d56aee94e94fa68a064f0814.ctex"
+uid="uid://yup6l3i4n0xx"
+path="res://.godot/imported/LidSide.png-4cb2426b81c2401db31cdaf0fd780c13.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/jigger_small.png"
-dest_files=["res://.godot/imported/jigger_small.png-e96e7ac4d56aee94e94fa68a064f0814.ctex"]
+source_file="res://Sprites/Tools/LidSide.png"
+dest_files=["res://.godot/imported/LidSide.png-4cb2426b81c2401db31cdaf0fd780c13.ctex"]
 
 [params]
 

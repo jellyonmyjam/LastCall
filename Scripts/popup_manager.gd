@@ -6,7 +6,8 @@ var target_object: Area2D = null
 var dragged_object: Area2D = null
 @onready var blur_overlay: ColorRect = $BlurOverlay
 const pour_minigame = preload("res://Scenes/UI/pour_minigame.tscn")
-@onready var popups := {"Pouring": pour_minigame}
+const shaker_minigame = preload("res://Scenes/UI/shaker_minigame.tscn")
+@onready var popups := {"Pouring": pour_minigame, "Shaking": shaker_minigame}
 
 
 func _ready():
@@ -22,10 +23,15 @@ func show_minigame(minigame_name: String):
 		popup_instance.position = Vector2(viewport_size.x / 2, viewport_size.y / 2)
 		popup_instance.z_index = 100
 		
-		#Set popup info
-		popup_instance.target_object = target_object
-		popup_instance.dragged_object = dragged_object
-		popup_instance.start_minigame()
+		if popup_instance.name == "Shaker Minigame":
+			var knob = popup_instance.get_node("Knob")
+			knob.target_object = target_object
+			knob.dragged_object = dragged_object
+			knob.start_minigame()
+		else:
+			popup_instance.target_object = target_object
+			popup_instance.dragged_object = dragged_object
+			popup_instance.start_minigame()
 		
 		#Disable draggables
 		for node in get_tree().get_nodes_in_group("draggable"):

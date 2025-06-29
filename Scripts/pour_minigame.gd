@@ -3,7 +3,6 @@ extends Node2D
 @onready var bottle: Area2D = $"PopupPanel/MinigameContent/Bottle Minigame"
 @onready var bottle_sprite: Sprite2D = $"PopupPanel/MinigameContent/Bottle Minigame/Sprite2D"
 @onready var fill_meter: ProgressBar = $PopupPanel/FillMeter
-@onready var interaction_manager: Node2D = $"../../InteractionManager"
 
 # These are your bottle pour thresholds
 const pour_start_angle = deg_to_rad(0.0)
@@ -24,12 +23,11 @@ var item_catalogue: Node2D = null
 var inventory_manager: Node2D = null
 
 func _ready():
-	item_catalogue = get_tree().root.get_node("Scene/ItemCatalogue")
-	inventory_manager = get_tree().root.get_node("Scene/InventoryManager")
+	item_catalogue = get_tree().root.get_node("Scene/Scripts/ItemCatalogue")
+	inventory_manager = get_tree().root.get_node("Scene/Scripts/InventoryManager")
 	fill_meter.max_value = 1.0
-
+	
 func start_minigame():
-	print(inventory_manager)
 	current_fill = inventory_manager.tool_inventory[target_object.get_meta("id")]["fill_level"]
 	bottle_id = dragged_object.get_meta("id")
 	ingredient = item_catalogue.bottle_data[dragged_object.get_meta("name")]["type"]
@@ -39,8 +37,6 @@ func start_minigame():
 	bottle_sprite.texture = bottle_texture
 
 func _process(delta):
-	if not visible:
-		return
 
 	var angle = bottle.rotation
 	var pour_speed = get_pour_speed(angle)

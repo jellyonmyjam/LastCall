@@ -26,7 +26,7 @@ var recipes = {
 	},
 	
 	"Daiquiri": {
-		"ingredients": {"rum": 2, "lime": 1},
+		"ingredients": {"rum": 2, "lime": 1, "syrup": 0.5},
 		"prep": "shaken",
 		"glass": "rocks",
 		"ice": true,

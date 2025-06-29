@@ -1,17 +1,17 @@
 extends Node2D
 
 var popup_interactions: = {
-	["Bottle", "Jigger"]: "Pouring",
+	["Bottle", "Jigger"]: "Pouring", ["Shaker Lid", "Shaker"]: "Shaking"
 }
 
 var pour_interactions: = [["Jigger","Drain"],["Shaker","Drain"],["Glass","Drain"],["Jigger","Shaker"],["Jigger","Glass"],["Shaker","Glass"],
 ["Scooper","Glass"],["Scooper","Shaker"]]
 
-@onready var popup_manager: CanvasLayer = $"../PopupManager"
+@onready var popup_manager: CanvasLayer = $"../../PopupManager"
 @onready var pour_manager: Node2D = $"../PourManager"
 @onready var item_catalogue: Node2D = $"../ItemCatalogue"
 @onready var inventory_manager: Node2D = $"../InventoryManager"
-@onready var drain: Area2D = $"../Workstation/Drain"
+@onready var drain: Area2D = $"../../Workstation/Drain"
 
 signal minigame_request(minigame: String)
 signal initiate_pour
@@ -56,13 +56,8 @@ func object_interaction(dragged_object: Area2D, target_object: Area2D) -> void:
 		print("Interaction: ",dragged_type," -> ",target_type)
 		
 		var allow_interaction = true
-		
-		if key == ["Bottle", "Jigger"]:
-			var jigger_contents = inventory_manager.tool_inventory[target_object.get_meta("id")]["jigger_contents"]
-			var bottle_contents = item_catalogue.bottle_data[dragged_object.get_meta("name")]["type"]
-			if jigger_contents != "" and jigger_contents != bottle_contents:
-				print("Jigger already contains a different ingredient")
-				allow_interaction = false
+		if check_valid(key,dragged_object,target_object) == false:
+			allow_interaction = false
 		
 		if popup_interactions.has(key) and allow_interaction:
 			popup_manager.target_object = target_object
@@ -88,18 +83,11 @@ func interaction_highlight(dragged_object: Area2D, target_object: Area2D) -> voi
 		var key = [dragged_type, target_type]
 		var sprite = target_object.get_node("Sprite2D")
 		
-		if popup_interactions.has(key):
-			# Custom visual validation for Bottle ➝ Jigger
-			if dragged_type == "Bottle" and target_type == "Jigger":
-				var jigger_contents = inventory_manager.tool_inventory[target_object.get_meta("id")]["jigger_contents"]
-				var bottle_contents = item_catalogue.bottle_data[dragged_object.get_meta("name")]["type"]
-
-				if jigger_contents != "" and jigger_contents != bottle_contents:
-					sprite.material.set_shader_parameter("tint_color", Color(1, 0.6, 0.6))  # Red tint = blocked
-					return
-					
-			sprite.material.set_shader_parameter("tint_color", Color(0.6, 1, 0.6))
-		elif pour_interactions.has(key):
+		if check_valid(key,dragged_object,target_object) == false:
+			sprite.material.set_shader_parameter("tint_color", Color(1, 0.6, 0.6))
+			return
+			
+		if popup_interactions.has(key) or pour_interactions.has(key):
 			sprite.material.set_shader_parameter("tint_color", Color(0.6, 1, 0.6))
 		else:
 			sprite.material.set_shader_parameter("tint_color", Color(1, 0.6, 0.6))
@@ -139,3 +127,24 @@ func snap_dragged_object_to_valid_position(dragged_object: Area2D) -> void:
 		if not is_blocked:
 			dragged_object.global_position = point
 			return
+			
+func check_valid(key,dragged_object,target_object):
+	
+	if key == ["Bottle", "Jigger"]:
+		var jigger_contents = inventory_manager.tool_inventory[target_object.get_meta("id")]["jigger_contents"]
+		var bottle_contents = item_catalogue.bottle_data[dragged_object.get_meta("name")]["type"]
+		if jigger_contents != "" and jigger_contents != bottle_contents:
+			print("Jigger already contains a different ingredient")
+			return false
+				
+	if key == ["Shaker Lid", "Shaker"]:
+		var shaker_contents = inventory_manager.tool_inventory[target_object.get_meta("id")]["contents"]
+		var shaken = inventory_manager.tool_inventory[target_object.get_meta("id")]["shaken"]
+		if shaken:
+			print("Drink already shaken")
+			return false
+		elif shaker_contents == {}:
+			print("No contents")
+			return false
+	
+	
