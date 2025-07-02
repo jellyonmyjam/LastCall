@@ -54,9 +54,10 @@ func bottle_spawn():
 			
 		var id = bottle_ids[index]
 		var bottle_data = bottle_inventory[id]
-	
 		var bottle_name = bottle_data["name"]
 		var bottle_instance = bottle_scene.instantiate()
+		var snap_offset = bottle_instance.snap_offset
+		
 		bottle_instance.name = bottle_name + " (" + str(id) + ")"
 		bottle_instance.snap_points.append(snap_points_bottles)
 		bottle_instance.set_meta("id", id)
@@ -65,7 +66,7 @@ func bottle_spawn():
 		bottle_instance.texture_workstation = item_catalogue.bottle_data[bottle_name]["texture_workstation"]
 	
 		bottle_objects.add_child(bottle_instance)
-		bottle_instance.global_position = point.global_position
+		bottle_instance.global_position = point.global_position + snap_offset
 		bottle_instance.current_snap_point = point
 		point.set_meta("Occupied", true)
 
@@ -81,9 +82,10 @@ func glass_spawn():
 	
 		var id = glass_ids[index]
 		var glass_data = glass_inventory[id]
-	
 		var glass_name = glass_data["type"]
 		var glass_instance = glass_scene.instantiate()
+		var snap_offset = glass_instance.snap_offset
+		
 		glass_instance.name = glass_name + " (" + str(id) + ")"
 		glass_instance.snap_points.append(snap_points_glasses)
 		glass_instance.snap_points.append(snap_points_serve)
@@ -93,7 +95,7 @@ func glass_spawn():
 		glass_instance.texture_workstation = item_catalogue.glass_data[glass_name]["texture_workstation"]
 	
 		glass_objects.add_child(glass_instance)
-		glass_instance.global_position = point.global_position
+		glass_instance.global_position = point.global_position + snap_offset
 		glass_instance.current_snap_point = point
 		point.set_meta("Occupied", true)
 
@@ -109,15 +111,16 @@ func tool_spawn():
 
 		var id = tool_ids[index]
 		var tool_data = tool_inventory[id]
-
 		var tool_name = tool_data["type"]
 		var tool_instance = tool_data["scene"].instantiate()
+		var snap_offset = tool_instance.snap_offset
+		
 		tool_instance.name = tool_name + " (" + str(id) + ")"
 		tool_instance.snap_points.append(snap_points_tools)
 		tool_instance.set_meta("id", id)
 
 		tool_objects.add_child(tool_instance)
-		tool_instance.global_position = point.global_position
+		tool_instance.global_position = point.global_position + snap_offset
 		tool_instance.current_snap_point = point
 		point.set_meta("Occupied", true)
 

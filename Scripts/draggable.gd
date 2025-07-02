@@ -112,7 +112,7 @@ func _input(event):
 					if is_snapped:
 						break
 					
-			if last_area == "Well" and is_snapped == false:
+			if last_area in ["Well", "Dialogue"] and is_snapped == false:
 				if saved_snap_point:
 					saved_snap_point.set_meta("Occupied", true)
 					current_snap_point = saved_snap_point	
@@ -232,6 +232,9 @@ func switch_area(area: Area2D) -> void:
 			if area == well:
 				var visible_section = area.get_node("Sections").get_children().filter(func(s): return s.visible)[0]
 				visible_section.get_node("Objects").add_child(self)
+			elif area == dialogue:
+				var visible_section = area.get_node("Patron Sections").get_children().filter(func(s): return s.visible)[0]
+				visible_section.add_child(self)
 			else:
 				area.get_node("Objects").add_child(self)
 			global_position = global_pos

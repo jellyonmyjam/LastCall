@@ -20,6 +20,7 @@ item_type = "Scooper"
 texture_workstation = ExtResource("2_2cwjf")
 size_well = Vector2(70, 35)
 size_workstation = Vector2(70, 35)
+area_resize = Vector2(1.5, 1.5)
 metadata/Item_Type = "Scooper"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

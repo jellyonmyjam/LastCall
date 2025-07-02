@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://c1k7ksaiikifv"]
+[gd_scene load_steps=46 format=3 uid="uid://c1k7ksaiikifv"]
 
 [ext_resource type="Texture2D" uid="uid://bxocmtyellp36" path="res://Sprites/scratched_metal_26_72_render_2.jpg" id="1_8t5iv"]
 [ext_resource type="Texture2D" uid="uid://b6pjqgwx68xki" path="res://Sprites/metal-plate-768x512.jpg" id="2_ubbiv"]
@@ -9,28 +9,34 @@
 [ext_resource type="Script" uid="uid://n8redk1sub25" path="res://Scripts/popup_manager.gd" id="11_lnogb"]
 [ext_resource type="Shader" uid="uid://pfcfsgewkqa7" path="res://Shaders/BlurOverlay.gdshader" id="12_20iik"]
 [ext_resource type="Script" uid="uid://chrviwqwksxtv" path="res://Scripts/pour_manager.gd" id="13_usre1"]
+[ext_resource type="Texture2D" uid="uid://f6sq5sqohqno" path="res://Sprites/grey-circle.png" id="15_758g8"]
 [ext_resource type="Texture2D" uid="uid://dv382wci7jgye" path="res://Sprites/IceMachineScooper.png" id="15_r152n"]
 [ext_resource type="PackedScene" uid="uid://nimtexjbtbo6" path="res://Scenes/scooper.tscn" id="15_u8y8g"]
 [ext_resource type="Script" uid="uid://bkwc11serhdfv" path="res://Scripts/ice_machine.gd" id="16_uc5w8"]
 [ext_resource type="Texture2D" uid="uid://bng3scl4y86j5" path="res://Sprites/Drain.png" id="17_nimp4"]
 [ext_resource type="Shader" uid="uid://dc81186t2byk2" path="res://Shaders/basic.gdshader" id="17_oisvf"]
-[ext_resource type="Script" uid="uid://by18hgu05ramh" path="res://Scripts/sprite_bob.gd" id="18_nckre"]
-[ext_resource type="Texture2D" uid="uid://baqiid42q5oo6" path="res://Sprites/guy.png" id="18_oisvf"]
 [ext_resource type="Texture2D" uid="uid://2ufw5vjc6wdv" path="res://Sprites/IceMachineNoScooper.png" id="18_uc5w8"]
 [ext_resource type="Texture2D" uid="uid://5htgxxyl8fyk" path="res://Sprites/UI/briefcase (1).png" id="19_n0gyp"]
 [ext_resource type="Texture2D" uid="uid://cod5n7lr3bw2l" path="res://Sprites/UI/square-bottle.png" id="20_nckre"]
 [ext_resource type="Texture2D" uid="uid://7ub4760g6lga" path="res://Sprites/UI/orange.png" id="21_13r6f"]
-[ext_resource type="Script" uid="uid://dmwy13pfff72u" path="res://Scripts/well_manager.gd" id="22_fcns5"]
+[ext_resource type="Script" uid="uid://dmwy13pfff72u" path="res://Scripts/well_sections.gd" id="22_fcns5"]
 [ext_resource type="Texture2D" uid="uid://deaxg2crgvdkk" path="res://Sprites/UI/glass-shot.png" id="22_kufdd"]
 [ext_resource type="Texture2D" uid="uid://0cxxsiy5nrkk" path="res://Sprites/UI/gears.png" id="23_3ffap"]
 [ext_resource type="Script" uid="uid://js2u8nc4565b" path="res://Scripts/dialogue_ui.gd" id="23_3fl7w"]
 [ext_resource type="Script" uid="uid://chpcwx7he3t7h" path="res://Scripts/recipe_catalogue.gd" id="23_r152n"]
+[ext_resource type="Script" uid="uid://3ea4eycmsxc8" path="res://Scripts/patron_sections.gd" id="24_2fy0o"]
 [ext_resource type="Texture2D" uid="uid://bu2l1xpjgalkj" path="res://Sprites/barwall.png" id="24_uc5w8"]
 [ext_resource type="Script" uid="uid://dgnip1u8bs2ie" path="res://Scripts/serve_manager.gd" id="27_dlgao"]
 [ext_resource type="Texture2D" uid="uid://cftenbtwg67wq" path="res://Sprites/UI/check-mark.png" id="28_n0gyp"]
 [ext_resource type="Script" uid="uid://cj174shlrns1m" path="res://Scripts/inventory_manager.gd" id="30_13r6f"]
 [ext_resource type="Script" uid="uid://tel6arpblwpr" path="res://Scripts/item_catalogue.gd" id="31_13r6f"]
 [ext_resource type="Script" uid="uid://dr8ydve8ja625" path="res://Scripts/hover_manager.gd" id="31_kufdd"]
+[ext_resource type="Texture2D" uid="uid://7ij2dipnj8mi" path="res://Sprites/UI/blank.png" id="32_vsdql"]
+[ext_resource type="Texture2D" uid="uid://boc4l3ld3qyts" path="res://Sprites/UI/check-mark2.png" id="33_758g8"]
+[ext_resource type="Texture2D" uid="uid://pbp0wy725rab" path="res://Sprites/UI/hand.png" id="35_fehj6"]
+[ext_resource type="Texture2D" uid="uid://b6165uhclgp02" path="res://Sprites/UI/martini.png" id="36_lkaj6"]
+[ext_resource type="Script" uid="uid://d0cbsgbhj5hgo" path="res://Scripts/shift_manager.gd" id="37_2fy0o"]
+[ext_resource type="Script" uid="uid://dsjp4vh7pe8wy" path="res://Scripts/patron_data.gd" id="38_fehj6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p6gg1"]
 size = Vector2(1280, 720)
@@ -69,7 +75,7 @@ input_pickable = false
 [node name="Sprite2D" type="Sprite2D" parent="Workstation"]
 z_index = -5
 position = Vector2(1280, 360)
-scale = Vector2(0.796, 0.81)
+scale = Vector2(0.8, 0.81)
 texture = ExtResource("1_8t5iv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Workstation"]
@@ -78,6 +84,7 @@ position = Vector2(1280, 360)
 shape = SubResource("RectangleShape2D_p6gg1")
 
 [node name="Objects" type="Node2D" parent="Workstation"]
+y_sort_enabled = true
 
 [node name="Drain" type="Area2D" parent="Workstation" groups=["interactable"]]
 position = Vector2(1824, 625)
@@ -113,6 +120,7 @@ shape = SubResource("RectangleShape2D_8t5iv")
 [node name="Sections" type="Node2D" parent="Well"]
 
 [node name="Items Section" type="Node2D" parent="Well/Sections"]
+visible = false
 
 [node name="Objects" type="Node2D" parent="Well/Sections/Items Section"]
 
@@ -165,7 +173,6 @@ mouse_filter = 2
 color = Color(0.205921, 0.25119, 0.257356, 1)
 
 [node name="Bottles Section" type="Node2D" parent="Well/Sections"]
-visible = false
 
 [node name="Objects" type="Node2D" parent="Well/Sections/Bottles Section"]
 
@@ -226,7 +233,7 @@ visible = false
 position = Vector2(90, 96)
 
 [node name="Snap Points Glasses" type="Node2D" parent="Well/Sections/Glassware Section/Glass Shelf"]
-position = Vector2(0, -7)
+position = Vector2(0, 15)
 
 [node name="Snap Point" parent="Well/Sections/Glassware Section/Glass Shelf/Snap Points Glasses" instance=ExtResource("9_oid2v")]
 visible = true
@@ -323,18 +330,236 @@ position = Vector2(3, -2)
 [node name="Dialogue" type="Area2D" parent="."]
 input_pickable = false
 
+[node name="Patron Sections" type="Node2D" parent="Dialogue"]
+
+[node name="Section 1" type="Node2D" parent="Dialogue/Patron Sections"]
+visible = false
+
+[node name="Dialogue UI" type="Control" parent="Dialogue/Patron Sections/Section 1"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 20.0
+offset_top = 140.0
+offset_right = 20.0
+offset_bottom = 140.0
+script = ExtResource("23_3fl7w")
+
+[node name="Serve UI" type="Control" parent="Dialogue/Patron Sections/Section 1"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Serve Button" type="Button" parent="Dialogue/Patron Sections/Section 1/Serve UI"]
+visible = false
+layout_mode = 0
+offset_left = 581.0
+offset_top = 559.0
+offset_right = 1100.0
+offset_bottom = 1078.0
+scale = Vector2(0.08, 0.08)
+icon = ExtResource("28_n0gyp")
+
+[node name="Section 2" type="Node2D" parent="Dialogue/Patron Sections"]
+visible = false
+
+[node name="Dialogue UI" type="Control" parent="Dialogue/Patron Sections/Section 2"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 20.0
+offset_top = 140.0
+offset_right = 20.0
+offset_bottom = 140.0
+script = ExtResource("23_3fl7w")
+
+[node name="Serve UI" type="Control" parent="Dialogue/Patron Sections/Section 2"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Serve Button" type="Button" parent="Dialogue/Patron Sections/Section 2/Serve UI"]
+visible = false
+layout_mode = 0
+offset_left = 581.0
+offset_top = 559.0
+offset_right = 1100.0
+offset_bottom = 1078.0
+scale = Vector2(0.08, 0.08)
+icon = ExtResource("28_n0gyp")
+
+[node name="Section 3" type="Node2D" parent="Dialogue/Patron Sections"]
+visible = false
+
+[node name="Dialogue UI" type="Control" parent="Dialogue/Patron Sections/Section 3"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 20.0
+offset_top = 140.0
+offset_right = 20.0
+offset_bottom = 140.0
+script = ExtResource("23_3fl7w")
+
+[node name="Serve UI" type="Control" parent="Dialogue/Patron Sections/Section 3"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Serve Button" type="Button" parent="Dialogue/Patron Sections/Section 3/Serve UI"]
+visible = false
+layout_mode = 0
+offset_left = 581.0
+offset_top = 559.0
+offset_right = 1100.0
+offset_bottom = 1078.0
+scale = Vector2(0.08, 0.08)
+icon = ExtResource("28_n0gyp")
+
+[node name="Section 4" type="Node2D" parent="Dialogue/Patron Sections"]
+
+[node name="Dialogue UI" type="Control" parent="Dialogue/Patron Sections/Section 4"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 20.0
+offset_top = 140.0
+offset_right = 20.0
+offset_bottom = 140.0
+script = ExtResource("23_3fl7w")
+
+[node name="Serve UI" type="Control" parent="Dialogue/Patron Sections/Section 4"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Serve Button" type="Button" parent="Dialogue/Patron Sections/Section 4/Serve UI"]
+visible = false
+layout_mode = 0
+offset_left = 581.0
+offset_top = 559.0
+offset_right = 1100.0
+offset_bottom = 1078.0
+scale = Vector2(0.08, 0.08)
+icon = ExtResource("28_n0gyp")
+
+[node name="Section 5" type="Node2D" parent="Dialogue/Patron Sections"]
+visible = false
+
+[node name="Dialogue UI" type="Control" parent="Dialogue/Patron Sections/Section 5"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 20.0
+offset_top = 140.0
+offset_right = 20.0
+offset_bottom = 140.0
+script = ExtResource("23_3fl7w")
+
+[node name="Serve UI" type="Control" parent="Dialogue/Patron Sections/Section 5"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Serve Button" type="Button" parent="Dialogue/Patron Sections/Section 5/Serve UI"]
+visible = false
+layout_mode = 0
+offset_left = 581.0
+offset_top = 559.0
+offset_right = 1100.0
+offset_bottom = 1078.0
+scale = Vector2(0.08, 0.08)
+icon = ExtResource("28_n0gyp")
+
+[node name="Section 6" type="Node2D" parent="Dialogue/Patron Sections"]
+visible = false
+
+[node name="Dialogue UI" type="Control" parent="Dialogue/Patron Sections/Section 6"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 20.0
+offset_top = 140.0
+offset_right = 20.0
+offset_bottom = 140.0
+script = ExtResource("23_3fl7w")
+
+[node name="Serve UI" type="Control" parent="Dialogue/Patron Sections/Section 6"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Serve Button" type="Button" parent="Dialogue/Patron Sections/Section 6/Serve UI"]
+visible = false
+layout_mode = 0
+offset_left = 581.0
+offset_top = 559.0
+offset_right = 1100.0
+offset_bottom = 1078.0
+scale = Vector2(0.08, 0.08)
+icon = ExtResource("28_n0gyp")
+
+[node name="Section 7" type="Node2D" parent="Dialogue/Patron Sections"]
+visible = false
+
+[node name="Dialogue UI" type="Control" parent="Dialogue/Patron Sections/Section 7"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 20.0
+offset_top = 140.0
+offset_right = 20.0
+offset_bottom = 140.0
+script = ExtResource("23_3fl7w")
+
+[node name="Serve UI" type="Control" parent="Dialogue/Patron Sections/Section 7"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Serve Button" type="Button" parent="Dialogue/Patron Sections/Section 7/Serve UI"]
+visible = false
+layout_mode = 0
+offset_left = 581.0
+offset_top = 559.0
+offset_right = 1100.0
+offset_bottom = 1078.0
+scale = Vector2(0.08, 0.08)
+icon = ExtResource("28_n0gyp")
+
+[node name="Section 8" type="Node2D" parent="Dialogue/Patron Sections"]
+visible = false
+
+[node name="Dialogue UI" type="Control" parent="Dialogue/Patron Sections/Section 8"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 20.0
+offset_top = 140.0
+offset_right = 20.0
+offset_bottom = 140.0
+script = ExtResource("23_3fl7w")
+
+[node name="Serve UI" type="Control" parent="Dialogue/Patron Sections/Section 8"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Serve Button" type="Button" parent="Dialogue/Patron Sections/Section 8/Serve UI"]
+visible = false
+layout_mode = 0
+offset_left = 581.0
+offset_top = 559.0
+offset_right = 1100.0
+offset_bottom = 1078.0
+scale = Vector2(0.08, 0.08)
+icon = ExtResource("28_n0gyp")
+
 [node name="Wall" type="Sprite2D" parent="Dialogue"]
 z_index = -10
 position = Vector2(34, 296)
 scale = Vector2(0.8, 0.6)
 texture = ExtResource("24_uc5w8")
-
-[node name="Guy" type="Sprite2D" parent="Dialogue"]
-z_index = -8
-position = Vector2(309, 437)
-scale = Vector2(0.35, 0.35)
-texture = ExtResource("18_oisvf")
-script = ExtResource("18_nckre")
 
 [node name="Counter" type="Sprite2D" parent="Dialogue"]
 modulate = Color(0.785427, 0.795609, 0.78451, 1)
@@ -343,17 +568,41 @@ position = Vector2(320, 671)
 scale = Vector2(0.41, 0.194)
 texture = ExtResource("1_8t5iv")
 
+[node name="Sprite2D" type="Sprite2D" parent="Dialogue/Counter"]
+modulate = Color(0.168627, 0.882353, 0.772549, 0.431373)
+position = Vector2(460.976, -87.6289)
+texture = ExtResource("15_758g8")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Dialogue"]
 visible = false
 position = Vector2(320, 360)
 shape = SubResource("RectangleShape2D_oisvf")
 
-[node name="Objects" type="Node2D" parent="Dialogue"]
-
 [node name="Snap Points Serve" type="Node2D" parent="Dialogue"]
-position = Vector2(487, 627)
+position = Vector2(505, 627)
 
 [node name="Snap Point" parent="Dialogue/Snap Points Serve" instance=ExtResource("9_oid2v")]
+visible = true
+
+[node name="Snap Point2" parent="Dialogue/Snap Points Serve" instance=ExtResource("9_oid2v")]
+visible = true
+
+[node name="Snap Point3" parent="Dialogue/Snap Points Serve" instance=ExtResource("9_oid2v")]
+visible = true
+
+[node name="Snap Point4" parent="Dialogue/Snap Points Serve" instance=ExtResource("9_oid2v")]
+visible = true
+
+[node name="Snap Point5" parent="Dialogue/Snap Points Serve" instance=ExtResource("9_oid2v")]
+visible = true
+
+[node name="Snap Point6" parent="Dialogue/Snap Points Serve" instance=ExtResource("9_oid2v")]
+visible = true
+
+[node name="Snap Point7" parent="Dialogue/Snap Points Serve" instance=ExtResource("9_oid2v")]
+visible = true
+
+[node name="Snap Point8" parent="Dialogue/Snap Points Serve" instance=ExtResource("9_oid2v")]
 visible = true
 
 [node name="PopupManager" type="CanvasLayer" parent="."]
@@ -370,60 +619,151 @@ color = Color(1, 1, 1, 0)
 [node name="WellManager" type="CanvasLayer" parent="."]
 script = ExtResource("22_fcns5")
 
-[node name="Well Sections" type="PanelContainer" parent="WellManager"]
-offset_left = 1846.0
-offset_top = 735.0
-offset_right = 2366.0
-offset_bottom = 3495.0
-scale = Vector2(0.12, 0.12)
+[node name="Well Sections" type="Control" parent="WellManager"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1807.0
+offset_top = 760.0
+offset_right = 1847.0
+offset_bottom = 800.0
+scale = Vector2(0.11, 0.11)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="WellManager/Well Sections"]
 layout_mode = 2
-theme_override_constants/separation = 40
+offset_left = 390.908
+offset_top = -209.091
+offset_right = 910.908
+offset_bottom = 2950.91
+theme_override_constants/separation = 100
 
 [node name="Kit Button" type="Button" parent="WellManager/Well Sections/VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 3
+theme_override_colors/icon_hover_color = Color(0.769233, 0.889439, 0.884582, 1)
+theme_override_colors/icon_pressed_color = Color(0.568911, 0.686528, 0.679334, 1)
 icon = ExtResource("19_n0gyp")
 
 [node name="Rack Button" type="Button" parent="WellManager/Well Sections/VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 3
+theme_override_colors/icon_hover_color = Color(0.769233, 0.889439, 0.884582, 1)
+theme_override_colors/icon_pressed_color = Color(0.568911, 0.686528, 0.679334, 1)
 icon = ExtResource("20_nckre")
 
 [node name="Glassware Button" type="Button" parent="WellManager/Well Sections/VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 3
+theme_override_colors/icon_hover_color = Color(0.769233, 0.889439, 0.884582, 1)
+theme_override_colors/icon_pressed_color = Color(0.568911, 0.686528, 0.679334, 1)
 icon = ExtResource("22_kufdd")
 
 [node name="Appliances Button" type="Button" parent="WellManager/Well Sections/VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 3
+theme_override_colors/icon_hover_color = Color(0.769233, 0.889439, 0.884582, 1)
+theme_override_colors/icon_pressed_color = Color(0.568911, 0.686528, 0.679334, 1)
 icon = ExtResource("23_3ffap")
 
 [node name="Additives Button" type="Button" parent="WellManager/Well Sections/VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 3
+theme_override_colors/icon_hover_color = Color(0.769233, 0.889439, 0.884582, 1)
+theme_override_colors/icon_pressed_color = Color(0.568911, 0.686528, 0.679334, 1)
 icon = ExtResource("21_13r6f")
 
-[node name="DialogueUI" type="Control" parent="."]
+[node name="PatronManager" type="CanvasLayer" parent="."]
+script = ExtResource("24_2fy0o")
+
+[node name="Patron Panel" type="Control" parent="PatronManager"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 20.0
-offset_top = 140.0
-offset_right = 20.0
-offset_bottom = 140.0
-script = ExtResource("23_3fl7w")
-
-[node name="ServeButton" type="Button" parent="DialogueUI"]
-visible = false
-layout_mode = 0
-offset_left = 543.0
-offset_top = 418.0
-offset_right = 1062.0
-offset_bottom = 937.0
+offset_left = 31.0
+offset_top = 11.0
+offset_right = 71.0
+offset_bottom = 51.0
 scale = Vector2(0.1, 0.1)
-icon = ExtResource("28_n0gyp")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PatronManager/Patron Panel"]
+layout_mode = 0
+offset_left = -180.0
+offset_right = 5380.0
+offset_bottom = 520.0
+theme_override_constants/separation = 140
+
+[node name="Button" type="Button" parent="PatronManager/Patron Panel/HBoxContainer"]
+layout_mode = 2
+icon = ExtResource("32_vsdql")
+
+[node name="Status Icon" type="Sprite2D" parent="PatronManager/Patron Panel/HBoxContainer/Button"]
+visible = false
+position = Vector2(450, 450)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("33_758g8")
+
+[node name="Button2" type="Button" parent="PatronManager/Patron Panel/HBoxContainer"]
+layout_mode = 2
+icon = ExtResource("32_vsdql")
+
+[node name="Status Icon" type="Sprite2D" parent="PatronManager/Patron Panel/HBoxContainer/Button2"]
+visible = false
+position = Vector2(450, 450)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("33_758g8")
+
+[node name="Button3" type="Button" parent="PatronManager/Patron Panel/HBoxContainer"]
+layout_mode = 2
+icon = ExtResource("32_vsdql")
+
+[node name="Status Icon" type="Sprite2D" parent="PatronManager/Patron Panel/HBoxContainer/Button3"]
+visible = false
+position = Vector2(450, 450)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("35_fehj6")
+
+[node name="Button4" type="Button" parent="PatronManager/Patron Panel/HBoxContainer"]
+layout_mode = 2
+icon = ExtResource("32_vsdql")
+
+[node name="Status Icon" type="Sprite2D" parent="PatronManager/Patron Panel/HBoxContainer/Button4"]
+visible = false
+position = Vector2(450, 450)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("36_lkaj6")
+
+[node name="Button5" type="Button" parent="PatronManager/Patron Panel/HBoxContainer"]
+layout_mode = 2
+icon = ExtResource("32_vsdql")
+
+[node name="Status Icon" type="Sprite2D" parent="PatronManager/Patron Panel/HBoxContainer/Button5"]
+visible = false
+position = Vector2(450, 450)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("33_758g8")
+
+[node name="Button6" type="Button" parent="PatronManager/Patron Panel/HBoxContainer"]
+layout_mode = 2
+icon = ExtResource("32_vsdql")
+
+[node name="Status Icon" type="Sprite2D" parent="PatronManager/Patron Panel/HBoxContainer/Button6"]
+visible = false
+position = Vector2(450, 450)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("33_758g8")
+
+[node name="Button7" type="Button" parent="PatronManager/Patron Panel/HBoxContainer"]
+layout_mode = 2
+icon = ExtResource("32_vsdql")
+
+[node name="Status Icon" type="Sprite2D" parent="PatronManager/Patron Panel/HBoxContainer/Button7"]
+visible = false
+position = Vector2(450, 450)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("33_758g8")
+
+[node name="Button8" type="Button" parent="PatronManager/Patron Panel/HBoxContainer"]
+layout_mode = 2
+icon = ExtResource("32_vsdql")
+
+[node name="Status Icon" type="Sprite2D" parent="PatronManager/Patron Panel/HBoxContainer/Button8"]
+visible = false
+position = Vector2(450, 450)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("33_758g8")
 
 [node name="Scripts" type="Node" parent="."]
 
@@ -447,3 +787,9 @@ script = ExtResource("23_r152n")
 
 [node name="HoverManager" type="Node2D" parent="Scripts"]
 script = ExtResource("31_kufdd")
+
+[node name="ShiftManager" type="Node2D" parent="Scripts"]
+script = ExtResource("37_2fy0o")
+
+[node name="PatronData" type="Node2D" parent="Scripts"]
+script = ExtResource("38_fehj6")

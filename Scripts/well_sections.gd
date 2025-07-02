@@ -10,4 +10,5 @@ func _ready() -> void:
 func switch_section(index: int):
 	for i in range(well_sections.size()):
 		well_sections[i].visible = (i == index)
-		
+	for i in range(buttons.size()):
+		buttons[i].modulate = Color(0.75, 0.85, 0.75) if i == index else Color(1,1,1)

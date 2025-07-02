@@ -19,10 +19,10 @@ script = ExtResource("1_q0icf")
 texture_well = ExtResource("2_q0icf")
 item_type = "Jigger"
 texture_workstation = ExtResource("3_2vrlx")
-size_well = Vector2(35, 50)
-size_workstation = Vector2(32, 55)
+size_well = Vector2(35, 55)
+size_workstation = Vector2(30, 45)
 snap_offset = Vector2(0, 20)
-area_resize = Vector2(1, 1.1)
+area_resize = Vector2(1.2, 1.3)
 metadata/id = 0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

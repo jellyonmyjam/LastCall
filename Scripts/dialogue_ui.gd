@@ -10,10 +10,6 @@ func _ready():
 	create_text(false,"Pour me a whiskey.")
 	await get_tree().create_timer(2.0).timeout
 	create_text(true,"Coming right up.")
-	await get_tree().create_timer(2.0).timeout
-	create_text(true,"Here you go.")
-	await get_tree().create_timer(2.0).timeout
-	create_text(false,"Thanks.")
 	
 func create_text(player,dialogue):
 	var panel = speech_bubble.instantiate()
