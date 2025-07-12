@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://c0dbq6u0obqe4"]
 
-[ext_resource type="Script" uid="uid://ch62ign44r3fk" path="res://Scripts/patron.gd" id="1_6xk4x"]
+[ext_resource type="Script" uid="uid://dsbc7biircv1b" path="res://Scripts/patron_controller.gd" id="1_6xk4x"]
 [ext_resource type="Texture2D" uid="uid://baqiid42q5oo6" path="res://Sprites/Patrons/bill.png" id="1_yxe66"]
-[ext_resource type="Script" uid="uid://by18hgu05ramh" path="res://Scripts/sprite_bob.gd" id="2_6xk4x"]
+[ext_resource type="Script" uid="uid://by18hgu05ramh" path="res://Scripts/patron_animations.gd" id="2_6xk4x"]
 
 [node name="Patron" type="Node2D"]
 script = ExtResource("1_6xk4x")

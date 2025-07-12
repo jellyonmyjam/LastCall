@@ -6,6 +6,11 @@ extends CanvasLayer
 func _ready() -> void:
 	for i in buttons.size():
 		buttons[i].pressed.connect(func(): switch_section(i))
+		
+	for i in range(well_sections.size()):
+		if well_sections[i].visible:
+			switch_section(i)
+			break
 
 func switch_section(index: int):
 	for i in range(well_sections.size()):

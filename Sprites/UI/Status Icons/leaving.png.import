@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cki84fk80pjsk"
-path="res://.godot/imported/arriving.png-b749a2b951bf5598cac9ecd42a47cc37.ctex"
+uid="uid://cqrlakhfm0xmu"
+path="res://.godot/imported/leaving.png-f0672793af804abd4cae089b88b47c81.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/UI/arriving.png"
-dest_files=["res://.godot/imported/arriving.png-b749a2b951bf5598cac9ecd42a47cc37.ctex"]
+source_file="res://Sprites/UI/Status Icons/leaving.png"
+dest_files=["res://.godot/imported/leaving.png-f0672793af804abd4cae089b88b47c81.ctex"]
 
 [params]
 

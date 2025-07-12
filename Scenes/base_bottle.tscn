@@ -21,7 +21,7 @@ item_type = "Bottle"
 texture_workstation = ExtResource("3_gs1aj")
 size_well = Vector2(40, 100)
 size_workstation = Vector2(40, 70)
-area_resize = Vector2(2, 2)
+area_resize = Vector2(1.8, 1.8)
 metadata/id = 0
 metadata/Name = ""
 

@@ -1,0 +1,11 @@
+ID,State,Speaker,Text
+1,Idle,Patron,My back is killing me.
+2,Idle,Patron,Just wait until you get older.
+3,Idle,Player,It can't be that bad.
+4,Idle,Patron,Yes it is.
+5,Order,Patron,Make me a tequila soda.
+6,Order,Player,"""Anything for you, Carol."""
+7,Idle2,Player,How are you holding up?
+8,Idle2,Patron,Not well.
+9,Drink Received,Patron,That's refreshing.
+10,Drink Received,Patron,Thanks.

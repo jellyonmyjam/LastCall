@@ -1,15 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://ci8txoos1csur"]
+[gd_scene load_steps=6 format=3 uid="uid://ctoxhn0him8r3"]
 
-[ext_resource type="Script" uid="uid://c8n3b43o0ecm7" path="res://Scripts/pour_minigame.gd" id="1_yvvkv"]
-[ext_resource type="Texture2D" uid="uid://r3xi7cx3t8al" path="res://Sprites/Tools/JiggerSide.png" id="2_yvvkv"]
-[ext_resource type="Script" uid="uid://cjsahik1c2rk0" path="res://Scripts/bottlepour.gd" id="3_quc38"]
-[ext_resource type="Texture2D" uid="uid://31sxqk03waj8" path="res://Sprites/Bottles/WhiskeySide.png" id="4_3hi6e"]
+[ext_resource type="Script" uid="uid://c8n3b43o0ecm7" path="res://Scripts/pour_minigame.gd" id="1_1qnwr"]
+[ext_resource type="Texture2D" uid="uid://47xj2jl13ba7" path="res://Sprites/Glasses/RocksSide.png" id="2_1qnwr"]
+[ext_resource type="Script" uid="uid://cjsahik1c2rk0" path="res://Scripts/bottlepour.gd" id="3_xn77o"]
+[ext_resource type="Texture2D" uid="uid://31sxqk03waj8" path="res://Sprites/Bottles/WhiskeySide.png" id="4_1xjcf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_75yu4"]
 size = Vector2(456.514, 179.011)
 
-[node name="Pour Minigame" type="Node2D"]
-script = ExtResource("1_yvvkv")
+[node name="Pour Minigame Glass" type="Node2D"]
+script = ExtResource("1_1qnwr")
 
 [node name="PopupPanel" type="ColorRect" parent="."]
 clip_contents = true
@@ -24,23 +24,23 @@ color = Color(0.82891, 0.82891, 0.82891, 1)
 [node name="MinigameContent" type="Node2D" parent="PopupPanel"]
 position = Vector2(400, 300)
 
-[node name="Jigger Minigame" type="Node2D" parent="PopupPanel/MinigameContent"]
+[node name="Glass Minigame" type="Node2D" parent="PopupPanel/MinigameContent"]
 position = Vector2(-180, 160)
 
-[node name="Sprite2D" type="Sprite2D" parent="PopupPanel/MinigameContent/Jigger Minigame"]
+[node name="Sprite2D" type="Sprite2D" parent="PopupPanel/MinigameContent/Glass Minigame"]
 position = Vector2(-1, -0.999985)
-scale = Vector2(0.7, 0.6)
-texture = ExtResource("2_yvvkv")
+scale = Vector2(0.7, 0.8)
+texture = ExtResource("2_1qnwr")
 
 [node name="Bottle Minigame" type="Area2D" parent="PopupPanel/MinigameContent"]
 position = Vector2(-146, -57)
 rotation = 0.261799
-script = ExtResource("3_quc38")
+script = ExtResource("3_xn77o")
 
 [node name="Sprite2D" type="Sprite2D" parent="PopupPanel/MinigameContent/Bottle Minigame"]
 position = Vector2(1, 2.98028e-08)
 rotation = -1.5708
-texture = ExtResource("4_3hi6e")
+texture = ExtResource("4_1xjcf")
 centered = false
 offset = Vector2(-100, 20)
 

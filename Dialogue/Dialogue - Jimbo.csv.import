@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://ctvft3efqhahm"
+
+[deps]
+
+files=["res://Dialogue/Dialogue - Jimbo.State.translation", "res://Dialogue/Dialogue - Jimbo.Speaker.translation", "res://Dialogue/Dialogue - Jimbo.Text.translation"]
+
+source_file="res://Dialogue/Dialogue - Jimbo.csv"
+dest_files=["res://Dialogue/Dialogue - Jimbo.State.translation", "res://Dialogue/Dialogue - Jimbo.Speaker.translation", "res://Dialogue/Dialogue - Jimbo.Text.translation"]
+
+[params]
+
+compress=true
+delimiter=0

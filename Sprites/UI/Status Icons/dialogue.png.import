@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c6v437plkb7ib"
-path="res://.godot/imported/hazard-sign.png-3bacb0705cdb7642e0dc8b58523068fb.ctex"
+uid="uid://brukvxb0270y4"
+path="res://.godot/imported/dialogue.png-2f44515a624a054c2000dfdd99a98aca.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/UI/hazard-sign.png"
-dest_files=["res://.godot/imported/hazard-sign.png-3bacb0705cdb7642e0dc8b58523068fb.ctex"]
+source_file="res://Sprites/UI/Status Icons/dialogue.png"
+dest_files=["res://.godot/imported/dialogue.png-2f44515a624a054c2000dfdd99a98aca.ctex"]
 
 [params]
 

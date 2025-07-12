@@ -6,8 +6,9 @@ var target_object: Area2D = null
 var dragged_object: Area2D = null
 @onready var blur_overlay: ColorRect = $BlurOverlay
 const pour_minigame = preload("res://Scenes/UI/pour_minigame.tscn")
+const pour_minigame_glass = preload("res://Scenes/UI/pour_minigame_glass.tscn")
 const shaker_minigame = preload("res://Scenes/UI/shaker_minigame.tscn")
-@onready var popups := {"Pouring": pour_minigame, "Shaking": shaker_minigame}
+@onready var popups := {"Pouring": pour_minigame, "Pouring Glass": pour_minigame_glass, "Shaking": shaker_minigame}
 
 
 func _ready():

@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://cpio5iymetur8"
+
+[deps]
+
+files=["res://Dialogue/Dialogue - Bill.State.translation", "res://Dialogue/Dialogue - Bill.Speaker.translation", "res://Dialogue/Dialogue - Bill.Text.translation"]
+
+source_file="res://Dialogue/Dialogue - Bill.csv"
+dest_files=["res://Dialogue/Dialogue - Bill.State.translation", "res://Dialogue/Dialogue - Bill.Speaker.translation", "res://Dialogue/Dialogue - Bill.Text.translation"]
+
+[params]
+
+compress=true
+delimiter=0

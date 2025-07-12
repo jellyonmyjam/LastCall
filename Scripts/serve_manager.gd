@@ -4,11 +4,14 @@ var order = "Daiquiri"
 var serve_buttons = []
 var current_section = 0
 var drink_ready = null
+var patron = null
 
 @onready var snap_points_serve: Array = $"../../Dialogue/Snap Points Serve".get_children()
+@onready var snap_points_object: Node2D = $"../../Dialogue/Snap Points Serve"
 @onready var patron_sections: Array = $"../../Dialogue/Patron Sections".get_children()
 @onready var inventory_manager: Node2D = $"../InventoryManager"
 @onready var recipe_catalogue: Node2D = $"../RecipeCatalogue"
+@onready var serve_sprite: Sprite2D = $"../../Dialogue/Counter/Sprite2D"
 
 
 func _ready():
@@ -16,9 +19,7 @@ func _ready():
 		var serve_button = patron_sections[i].get_node("Serve UI/Serve Button")
 		serve_buttons.append(serve_button)
 		serve_button.pressed.connect(serve_drink)
-		
-		if patron_sections[i].visible:
-			current_section = i
+
 
 func _process(_delta):
 	var section = patron_sections[current_section]
@@ -26,15 +27,24 @@ func _process(_delta):
 	var serve_button = serve_buttons[current_section]
 	var snap_position = snap_point.global_position
 	var found_glass = false
+	var serve_available = false
 	
-	for object in section.get_children():
-		if object.has_method("get"):
-			if "item_type" in object and object.item_type == "Glass":
-				if object.global_position.distance_to(snap_position) < 1:
-					found_glass = true
-					drink_ready = object
-					break
+	if patron_sections[current_section].has_node("Patron"):
+		patron = patron_sections[current_section].get_node("Patron")
+		if patron.current_status == "Awaiting Drink":
+			serve_available = true
 	
+	if serve_available:
+		for object in section.get_children():
+			if object.has_method("get"):
+				if "item_type" in object and object.item_type == "Glass":
+					if object.global_position.distance_to(snap_position) < 1:
+						found_glass = true
+						drink_ready = object
+						break
+	
+	snap_points_object.visible = serve_available
+	serve_sprite.visible = serve_available
 	serve_button.visible = found_glass
 
 
@@ -47,6 +57,7 @@ func serve_drink():
 	var has_soda = inventory_manager.glass_inventory[id]["has_soda"]
 	var score = score_drink(contents,glass_type,prep,has_ice,has_soda)
 	print(score)
+	patron.drink_served(score)
 	drink_ready.queue_free()
 	snap_points_serve[current_section].set_meta("Occupied", false)
 
@@ -64,6 +75,7 @@ func score_drink(contents,glass_type,prep,has_ice,has_soda):
 	for ingredient in order_contents:
 		var expected = order_contents[ingredient]
 		if contents.has(ingredient):
+			print(expected)
 			var actual = contents[ingredient]
 			var ingredient_score = 10 - abs(actual - expected) / expected * 10
 			score += ingredient_score
@@ -75,6 +87,7 @@ func score_drink(contents,glass_type,prep,has_ice,has_soda):
 			score += 20
 	
 	score = (score/total_score) * 70
+	print(score)
 
 	for ingredient in contents:
 		if not order_contents.has(ingredient):

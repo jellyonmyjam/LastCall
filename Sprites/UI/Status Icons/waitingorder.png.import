@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://rhxvngmdgfts"
-path="res://.godot/imported/leaving.png-3aceb2d3ba8167f7ca9b0a775317ea67.ctex"
+uid="uid://pbp0wy725rab"
+path="res://.godot/imported/waitingorder.png-c4e957e47ad186b93f8adf2e7482e35a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/UI/leaving.png"
-dest_files=["res://.godot/imported/leaving.png-3aceb2d3ba8167f7ca9b0a775317ea67.ctex"]
+source_file="res://Sprites/UI/Status Icons/waitingorder.png"
+dest_files=["res://.godot/imported/waitingorder.png-c4e957e47ad186b93f8adf2e7482e35a.ctex"]
 
 [params]
 

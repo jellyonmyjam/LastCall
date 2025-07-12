@@ -4,25 +4,21 @@ const speech_bubble = preload("res://Scenes/UI/speechbubble.tscn")
 var speech_bubbles = []
 var is_shifting_bubbles = false
 
-func _ready():
-	create_text(true,"What can I get you?")
-	await get_tree().create_timer(2.0).timeout
-	create_text(false,"Pour me a whiskey.")
-	await get_tree().create_timer(2.0).timeout
-	create_text(true,"Coming right up.")
-	
-func create_text(player,dialogue):
+
+func create_text(is_player,dialogue):
+	print(dialogue)
 	var panel = speech_bubble.instantiate()
 	panel.modulate.a = 0.0
 	add_child(panel)
+	
 	var label: Label = panel.get_node("MarginContainer/Label")
 	label.text = dialogue
-	if player:
+	if is_player:
 		label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 	
-	var max_width := 400
+	var max_width := 600
 	var min_width := 100
-	var increment := 5
+	var increment := 20
 
 	label.custom_minimum_size.x = max_width
 	panel.custom_minimum_size.x = max_width
@@ -34,6 +30,8 @@ func create_text(player,dialogue):
 		label.custom_minimum_size.x = max_width
 		panel.custom_minimum_size.x = max_width
 		await get_tree().process_frame
+		if not is_instance_valid(panel):
+			return
 	
 	max_width += increment
 	label.custom_minimum_size.x = max_width
@@ -51,7 +49,7 @@ func create_text(player,dialogue):
 	
 	speech_bubbles.append(panel)
 	
-	if player:
+	if is_player:
 		panel.position = Vector2(600 - panel.size.x, panel.position.y)
 
 	var tween := create_tween()
@@ -59,15 +57,21 @@ func create_text(player,dialogue):
 	await tween.finished
 #
 	# Wait before fading out
-	await get_tree().create_timer(6.0).timeout
+	await get_tree().create_timer(5.0).timeout
 	
-	shift_bubbles(panel.size.y, panel)
+	if is_instance_valid(panel):
+		shift_bubbles(panel.size.y, panel)
+	else:
+		return
 	
 	# Fade out
 	var fade_out = create_tween()
 	fade_out.tween_property(panel, "modulate:a", 0.0, 0.3)
 	await fade_out.finished
 	
+	if not is_instance_valid(panel):
+		return
+
 	speech_bubbles.erase(panel)
 	panel.queue_free()
 
@@ -83,3 +87,9 @@ func shift_bubbles(shift_amount, skip_panel):
 	for t in tweens:
 		await t.finished
 	is_shifting_bubbles = false
+	
+
+func clear_bubbles():
+	for bubble in get_children():
+		bubble.queue_free()
+	speech_bubbles.clear()

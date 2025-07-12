@@ -1,7 +1,7 @@
 extends Node2D
 
 var popup_interactions: = {
-	["Bottle", "Jigger"]: "Pouring", ["Shaker Lid", "Shaker"]: "Shaking"
+	["Bottle", "Jigger"]: "Pouring", ["Bottle", "Glass"]: "Pouring Glass", ["Shaker Lid", "Shaker"]: "Shaking"
 }
 
 var pour_interactions: = [["Jigger","Drain"],["Shaker","Drain"],["Glass","Drain"],["Jigger","Shaker"],["Jigger","Glass"],["Shaker","Glass"],

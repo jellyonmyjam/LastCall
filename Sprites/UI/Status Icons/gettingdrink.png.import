@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://pbp0wy725rab"
-path="res://.godot/imported/hand.png-50d4c1fd43956a79140cf195ba941252.ctex"
+uid="uid://b6165uhclgp02"
+path="res://.godot/imported/gettingdrink.png-e4e02418189776ee3f195834691f0dbf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/UI/hand.png"
-dest_files=["res://.godot/imported/hand.png-50d4c1fd43956a79140cf195ba941252.ctex"]
+source_file="res://Sprites/UI/Status Icons/gettingdrink.png"
+dest_files=["res://.godot/imported/gettingdrink.png-e4e02418189776ee3f195834691f0dbf.ctex"]
 
 [params]
 

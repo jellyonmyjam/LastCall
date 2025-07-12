@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://ouyxsycxarr1"
+
+[deps]
+
+files=["res://Dialogue/Dialogue - Carol.State.translation", "res://Dialogue/Dialogue - Carol.Speaker.translation", "res://Dialogue/Dialogue - Carol.Text.translation"]
+
+source_file="res://Dialogue/Dialogue - Carol.csv"
+dest_files=["res://Dialogue/Dialogue - Carol.State.translation", "res://Dialogue/Dialogue - Carol.Speaker.translation", "res://Dialogue/Dialogue - Carol.Text.translation"]
+
+[params]
+
+compress=true
+delimiter=0

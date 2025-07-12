@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b6165uhclgp02"
-path="res://.godot/imported/martini.png-9662f175f9fdb7f3457dd47c29d80aaf.ctex"
+uid="uid://bshuu7am4sbbd"
+path="res://.godot/imported/arriving.png-b533872e66b1ffb8c308342c53d51439.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/UI/martini.png"
-dest_files=["res://.godot/imported/martini.png-9662f175f9fdb7f3457dd47c29d80aaf.ctex"]
+source_file="res://Sprites/UI/Status Icons/arriving.png"
+dest_files=["res://.godot/imported/arriving.png-b533872e66b1ffb8c308342c53d51439.ctex"]
 
 [params]
 

@@ -28,9 +28,9 @@ var bottle_inventory = {
 }
 
 var glass_inventory = {
-	1: {"type": "rocks", "fill_level": 0.0, "contents": {}, "prep": "built", "has_ice": false, "has_soda": false},
-	2: {"type": "highball", "fill_level": 0.0, "contents": {}, "prep": "built", "has_ice": false, "has_soda": false},
-	3: {"type": "mug", "fill_level": 0.0, "contents": {}, "prep": "built", "has_ice": false, "has_soda": false}
+	1: {"type": "Rocks", "fill_level": 0.0, "contents": {}, "prep": "Built", "has_ice": false, "has_soda": false},
+	2: {"type": "Highball", "fill_level": 0.0, "contents": {}, "prep": "Built", "has_ice": false, "has_soda": false},
+	3: {"type": "Mug", "fill_level": 0.0, "contents": {}, "prep": "Built", "has_ice": false, "has_soda": false}
 }
 
 var tool_inventory := {

@@ -28,7 +28,7 @@ func initiate_pour():
 	if target_type == "Drain" and dragged_type == "Glass":
 		inventory_manager.glass_inventory[dragged_id]["fill_level"] = 0.0
 		inventory_manager.glass_inventory[dragged_id]["contents"] = {}
-		inventory_manager.glass_inventory[dragged_id]["prep"] = "built"
+		inventory_manager.glass_inventory[dragged_id]["prep"] = "Built"
 		inventory_manager.glass_inventory[dragged_id]["has_ice"] = false
 		inventory_manager.glass_inventory[dragged_id]["has_soda"] = false
 	
@@ -77,7 +77,7 @@ func initiate_pour():
 		inventory_manager.glass_inventory[target_id]["contents"] = contents.duplicate()
 		inventory_manager.glass_inventory[target_id]["fill_level"] = fill_level
 		if inventory_manager.tool_inventory[dragged_id]["shaken"] == true:
-			inventory_manager.glass_inventory[target_id]["prep"] = "shaken"
+			inventory_manager.glass_inventory[target_id]["prep"] = "Shaken"
 
 		inventory_manager.tool_inventory[dragged_id]["contents"] = {}
 		inventory_manager.tool_inventory[dragged_id]["fill_level"] = 0.0

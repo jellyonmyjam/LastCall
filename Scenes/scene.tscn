@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://c1k7ksaiikifv"]
+[gd_scene load_steps=45 format=3 uid="uid://c1k7ksaiikifv"]
 
 [ext_resource type="Texture2D" uid="uid://bxocmtyellp36" path="res://Sprites/scratched_metal_26_72_render_2.jpg" id="1_8t5iv"]
 [ext_resource type="Texture2D" uid="uid://b6pjqgwx68xki" path="res://Sprites/metal-plate-768x512.jpg" id="2_ubbiv"]
@@ -28,14 +28,13 @@
 [ext_resource type="Texture2D" uid="uid://bu2l1xpjgalkj" path="res://Sprites/barwall.png" id="24_uc5w8"]
 [ext_resource type="Script" uid="uid://dgnip1u8bs2ie" path="res://Scripts/serve_manager.gd" id="27_dlgao"]
 [ext_resource type="Texture2D" uid="uid://cftenbtwg67wq" path="res://Sprites/UI/check-mark.png" id="28_n0gyp"]
+[ext_resource type="Texture2D" uid="uid://b5elfdc8t8svs" path="res://Sprites/UI/chat-bubble.png" id="29_fehj6"]
 [ext_resource type="Script" uid="uid://cj174shlrns1m" path="res://Scripts/inventory_manager.gd" id="30_13r6f"]
 [ext_resource type="Script" uid="uid://tel6arpblwpr" path="res://Scripts/item_catalogue.gd" id="31_13r6f"]
 [ext_resource type="Script" uid="uid://dr8ydve8ja625" path="res://Scripts/hover_manager.gd" id="31_kufdd"]
 [ext_resource type="Texture2D" uid="uid://7ij2dipnj8mi" path="res://Sprites/UI/blank.png" id="32_vsdql"]
-[ext_resource type="Texture2D" uid="uid://boc4l3ld3qyts" path="res://Sprites/UI/check-mark2.png" id="33_758g8"]
-[ext_resource type="Texture2D" uid="uid://pbp0wy725rab" path="res://Sprites/UI/hand.png" id="35_fehj6"]
-[ext_resource type="Texture2D" uid="uid://b6165uhclgp02" path="res://Sprites/UI/martini.png" id="36_lkaj6"]
 [ext_resource type="Script" uid="uid://d0cbsgbhj5hgo" path="res://Scripts/shift_manager.gd" id="37_2fy0o"]
+[ext_resource type="Script" uid="uid://cbley2u4cvv5h" path="res://Scripts/dialogue_manager.gd" id="38_2fy0o"]
 [ext_resource type="Script" uid="uid://dsjp4vh7pe8wy" path="res://Scripts/patron_data.gd" id="38_fehj6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p6gg1"]
@@ -569,6 +568,7 @@ scale = Vector2(0.41, 0.194)
 texture = ExtResource("1_8t5iv")
 
 [node name="Sprite2D" type="Sprite2D" parent="Dialogue/Counter"]
+visible = false
 modulate = Color(0.168627, 0.882353, 0.772549, 0.431373)
 position = Vector2(460.976, -87.6289)
 texture = ExtResource("15_758g8")
@@ -691,9 +691,8 @@ icon = ExtResource("32_vsdql")
 
 [node name="Status Icon" type="Sprite2D" parent="PatronManager/Patron Panel/HBoxContainer/Button"]
 visible = false
-position = Vector2(450, 450)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("33_758g8")
+position = Vector2(430, 430)
+scale = Vector2(0.7, 0.7)
 
 [node name="Button2" type="Button" parent="PatronManager/Patron Panel/HBoxContainer"]
 layout_mode = 2
@@ -701,9 +700,8 @@ icon = ExtResource("32_vsdql")
 
 [node name="Status Icon" type="Sprite2D" parent="PatronManager/Patron Panel/HBoxContainer/Button2"]
 visible = false
-position = Vector2(450, 450)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("33_758g8")
+position = Vector2(430, 430)
+scale = Vector2(0.7, 0.7)
 
 [node name="Button3" type="Button" parent="PatronManager/Patron Panel/HBoxContainer"]
 layout_mode = 2
@@ -711,9 +709,8 @@ icon = ExtResource("32_vsdql")
 
 [node name="Status Icon" type="Sprite2D" parent="PatronManager/Patron Panel/HBoxContainer/Button3"]
 visible = false
-position = Vector2(450, 450)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("35_fehj6")
+position = Vector2(430, 430)
+scale = Vector2(0.7, 0.7)
 
 [node name="Button4" type="Button" parent="PatronManager/Patron Panel/HBoxContainer"]
 layout_mode = 2
@@ -721,9 +718,8 @@ icon = ExtResource("32_vsdql")
 
 [node name="Status Icon" type="Sprite2D" parent="PatronManager/Patron Panel/HBoxContainer/Button4"]
 visible = false
-position = Vector2(450, 450)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("36_lkaj6")
+position = Vector2(430, 430)
+scale = Vector2(0.7, 0.7)
 
 [node name="Button5" type="Button" parent="PatronManager/Patron Panel/HBoxContainer"]
 layout_mode = 2
@@ -731,9 +727,8 @@ icon = ExtResource("32_vsdql")
 
 [node name="Status Icon" type="Sprite2D" parent="PatronManager/Patron Panel/HBoxContainer/Button5"]
 visible = false
-position = Vector2(450, 450)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("33_758g8")
+position = Vector2(430, 430)
+scale = Vector2(0.7, 0.7)
 
 [node name="Button6" type="Button" parent="PatronManager/Patron Panel/HBoxContainer"]
 layout_mode = 2
@@ -741,9 +736,8 @@ icon = ExtResource("32_vsdql")
 
 [node name="Status Icon" type="Sprite2D" parent="PatronManager/Patron Panel/HBoxContainer/Button6"]
 visible = false
-position = Vector2(450, 450)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("33_758g8")
+position = Vector2(430, 430)
+scale = Vector2(0.7, 0.7)
 
 [node name="Button7" type="Button" parent="PatronManager/Patron Panel/HBoxContainer"]
 layout_mode = 2
@@ -751,9 +745,8 @@ icon = ExtResource("32_vsdql")
 
 [node name="Status Icon" type="Sprite2D" parent="PatronManager/Patron Panel/HBoxContainer/Button7"]
 visible = false
-position = Vector2(450, 450)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("33_758g8")
+position = Vector2(430, 430)
+scale = Vector2(0.7, 0.7)
 
 [node name="Button8" type="Button" parent="PatronManager/Patron Panel/HBoxContainer"]
 layout_mode = 2
@@ -761,9 +754,16 @@ icon = ExtResource("32_vsdql")
 
 [node name="Status Icon" type="Sprite2D" parent="PatronManager/Patron Panel/HBoxContainer/Button8"]
 visible = false
-position = Vector2(450, 450)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("33_758g8")
+position = Vector2(430, 430)
+scale = Vector2(0.7, 0.7)
+
+[node name="Interact Button" type="Button" parent="PatronManager/Patron Panel"]
+layout_mode = 0
+offset_left = 5380.0
+offset_top = 6.10352e-05
+offset_right = 5900.0
+offset_bottom = 520.0
+icon = ExtResource("29_fehj6")
 
 [node name="Scripts" type="Node" parent="."]
 
@@ -793,3 +793,6 @@ script = ExtResource("37_2fy0o")
 
 [node name="PatronData" type="Node2D" parent="Scripts"]
 script = ExtResource("38_fehj6")
+
+[node name="DialogueManager" type="Node2D" parent="Scripts"]
+script = ExtResource("38_2fy0o")

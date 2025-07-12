@@ -61,23 +61,23 @@ var bottle_data = {
 
 
 var glass_data = {
-	"rocks": {
-		"type": "rocks",
+	"Rocks": {
+		"type": "Rocks",
 		"texture_well": load("res://Sprites/Glasses/RocksSide.png"),
 		"texture_workstation": load("res://Sprites/Glasses/RocksTop.png")
 	},
-	"highball": {
-		"type": "highball",
+	"Highball": {
+		"type": "Highball",
 		"texture_well":  load("res://Sprites/Glasses/HighballSide.png"),
 		"texture_workstation":  load("res://Sprites/Glasses/HighballTop.png")
 	},
-	"coupe": {
-		"type": "coupe",
+	"Coupe": {
+		"type": "Coupe",
 		"texture_well":  load("res://Sprites/Glasses/CoupeSide.png"),
 		"texture_workstation":  load("res://Sprites/Glasses/CoupeTop.png")
 	},
-	"mug": {
-		"type": "mug",
+	"Mug": {
+		"type": "Mug",
 		"texture_well": load("res://Sprites/Glasses/MugSide.png"),
 		"texture_workstation":  load("res://Sprites/Glasses/MugTop.png")
 	},
