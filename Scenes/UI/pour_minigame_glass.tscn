@@ -1,9 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://ctoxhn0him8r3"]
+[gd_scene load_steps=9 format=3 uid="uid://ctoxhn0him8r3"]
 
 [ext_resource type="Script" uid="uid://c8n3b43o0ecm7" path="res://Scripts/pour_minigame.gd" id="1_1qnwr"]
-[ext_resource type="Texture2D" uid="uid://47xj2jl13ba7" path="res://Sprites/Glasses/RocksSide.png" id="2_1qnwr"]
+[ext_resource type="Texture2D" uid="uid://dbrss585qvi2p" path="res://Sprites/Glasses/CoupeSide.png" id="2_xn77o"]
+[ext_resource type="Shader" uid="uid://w0iwe8ngfna6" path="res://Shaders/LiquidFill.gdshader" id="3_1xjcf"]
 [ext_resource type="Script" uid="uid://cjsahik1c2rk0" path="res://Scripts/bottlepour.gd" id="3_xn77o"]
 [ext_resource type="Texture2D" uid="uid://31sxqk03waj8" path="res://Sprites/Bottles/WhiskeySide.png" id="4_1xjcf"]
+[ext_resource type="Texture2D" uid="uid://b326dqwt7paxf" path="res://Sprites/Glasses/RocksLiquid.png" id="4_el82h"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7vak3"]
+shader = ExtResource("3_1xjcf")
+shader_parameter/fill_amount = 0.7
+shader_parameter/tint_color = Color(1, 1, 1, 1)
+shader_parameter/curve_height = 0.02
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_75yu4"]
 size = Vector2(456.514, 179.011)
@@ -25,15 +33,19 @@ color = Color(0.82891, 0.82891, 0.82891, 1)
 position = Vector2(400, 300)
 
 [node name="Glass Minigame" type="Node2D" parent="PopupPanel/MinigameContent"]
-position = Vector2(-180, 160)
+position = Vector2(-180, 120)
 
 [node name="Sprite2D" type="Sprite2D" parent="PopupPanel/MinigameContent/Glass Minigame"]
-position = Vector2(-1, -0.999985)
 scale = Vector2(0.7, 0.8)
-texture = ExtResource("2_1qnwr")
+texture = ExtResource("2_xn77o")
+
+[node name="Liquid" type="Sprite2D" parent="PopupPanel/MinigameContent/Glass Minigame/Sprite2D"]
+material = SubResource("ShaderMaterial_7vak3")
+position = Vector2(0, 45)
+texture = ExtResource("4_el82h")
 
 [node name="Bottle Minigame" type="Area2D" parent="PopupPanel/MinigameContent"]
-position = Vector2(-146, -57)
+position = Vector2(-180, -60)
 rotation = 0.261799
 script = ExtResource("3_xn77o")
 

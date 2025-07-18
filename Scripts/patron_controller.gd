@@ -5,11 +5,13 @@ var sequence = []
 var orders = []
 var step = 0
 var section = 0
+var order_count = 0
 var current_status
 var patron_sprite = null
 var waiting_to_arrive = false
 var waiting_to_exit = false
 var current_status_icon = null
+var dialogue_ui = null
 
 var status_icons = {
 	"Arriving": "res://Sprites/UI/Status Icons/arriving.png",
@@ -27,6 +29,7 @@ var status_icons = {
 
 func _ready():
 	patron_sprite = get_node("Sprite2D")
+	dialogue_ui = get_parent().get_node("Dialogue UI")
 	
 
 func play_sequence():
@@ -100,6 +103,8 @@ func dialogue_finished():
 
 
 func patron_interacted():
+	await dialogue_ui.clear_bubbles()
+	
 	if current_status == "Awaiting Order":
 		step += 1
 		play_sequence()

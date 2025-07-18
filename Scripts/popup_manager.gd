@@ -17,11 +17,12 @@ func _ready():
 func show_minigame(minigame_name: String):
 	popup = popups.get(minigame_name)
 	if popup:
-		blur_overlay.visible = true
+		#blur_overlay.visible = true
 		popup_instance = popup.instantiate()
 		add_child(popup_instance)
-		var viewport_size = get_viewport().get_visible_rect().size
-		popup_instance.position = Vector2(viewport_size.x / 2, viewport_size.y / 2)
+		#var viewport_size = get_viewport().get_visible_rect().size
+		#popup_instance.position = Vector2(viewport_size.x / 2, viewport_size.y / 2)
+		popup_instance.position = Vector2 (1280,360)
 		popup_instance.z_index = 100
 		
 		if popup_instance.name == "Shaker Minigame":

@@ -5,9 +5,12 @@ extends Node2D
 
 var active_ui = null
 var session_id = 0
+var dialogue_playing = false
 
 
 func queue_dialogue(patron, index):
+	dialogue_playing = true
+	
 	session_id += 1
 	var current_id = session_id
 	
@@ -27,22 +30,22 @@ func queue_dialogue(patron, index):
 		if line == "":
 			continue
 	
-		#var split = []
-		#var current = ""
-		#var inside_quotes = false
+		var split = []
+		var current = ""
+		var inside_quotes = false
 		
-		var split = line.split(",")
+		#var split = line.split(",")
 
-		#for i in line.length():
-			#var character = line[i]
-			#if character == '"':
-				#inside_quotes = !inside_quotes
-			#elif character == ',' and not inside_quotes:
-				#split.append(current.strip_edges())
-				#current = ""
-			#else:
-				#current += character
-		#split.append(current.strip_edges())
+		for i in line.length():
+			var character = line[i]
+			if character == '"':
+				inside_quotes = !inside_quotes
+			elif character == ',' and not inside_quotes:
+				split.append(current.strip_edges())
+				current = ""
+			else:
+				current += character
+		split.append(current.strip_edges())
 		
 		if line_number == 0:
 			headers = split
@@ -69,8 +72,11 @@ func play_dialogue_sequence(lines: Array, current_id: int, patron_object: Node2D
 			current_playing_ui.create_text(is_player, entry["Text"])
 			await get_tree().create_timer(1.0).timeout
 		else:
+			dialogue_playing = false
 			return
+			
 	
 	if current_id == session_id:
+		dialogue_playing = false
 		patron_object.dialogue_finished()
 		

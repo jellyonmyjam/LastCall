@@ -1,17 +1,33 @@
-[gd_scene load_steps=8 format=3 uid="uid://dad02cunkpjcf"]
+[gd_scene load_steps=13 format=3 uid="uid://dad02cunkpjcf"]
 
 [ext_resource type="Script" uid="uid://eah4mumgkd3s" path="res://Scripts/draggable.gd" id="1_epkpk"]
 [ext_resource type="Texture2D" uid="uid://47xj2jl13ba7" path="res://Sprites/Glasses/RocksSide.png" id="2_epkpk"]
 [ext_resource type="Texture2D" uid="uid://d1dnurn7qvbnj" path="res://Sprites/Glasses/RocksTop.png" id="3_xy4n1"]
 [ext_resource type="Shader" uid="uid://7hd0tlfiehci" path="res://Shaders/AreaSwitch.gdshader" id="4_h0fon"]
+[ext_resource type="Shader" uid="uid://d3p83to4wjq5x" path="res://Shaders/Liquid+Area.gdshader" id="5_s8rjn"]
+[ext_resource type="Texture2D" uid="uid://b326dqwt7paxf" path="res://Sprites/Glasses/RocksLiquid.png" id="5_xy4n1"]
+[ext_resource type="Texture2D" uid="uid://b785jyenpse8q" path="res://Sprites/Glasses/Rocks Liquid/Liquid 1.png" id="6_h0fon"]
+[ext_resource type="Script" uid="uid://dudcijr1tbw6k" path="res://Scripts/liquid_controller.gd" id="7_lum5r"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_f6sb3"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lum5r"]
 shader = ExtResource("4_h0fon")
-shader_parameter/boundary_min = Vector2(0, 720)
-shader_parameter/boundary_max = Vector2(1920, 1080)
+shader_parameter/boundary_min = Vector2(0, 0)
+shader_parameter/boundary_max = Vector2(0, 0)
 shader_parameter/tint_color = Color(1, 1, 1, 1)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_s8rjn"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xy4n1"]
+shader = ExtResource("5_s8rjn")
+shader_parameter/boundary_min = Vector2(0, 0)
+shader_parameter/boundary_max = Vector2(0, 0)
+shader_parameter/fill_amount = 0.0
+shader_parameter/tint_color = Color(1, 1, 1, 1)
+shader_parameter/curve_height = 0.02
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_areb7"]
+shader = ExtResource("4_h0fon")
+shader_parameter/boundary_min = Vector2(0, 0)
+shader_parameter/boundary_max = Vector2(0, 0)
+shader_parameter/tint_color = Color(1, 1, 1, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_usre1"]
 size = Vector2(80, 102)
@@ -27,9 +43,19 @@ area_resize = Vector2(1.5, 1.5)
 metadata/id = 0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_f6sb3")
+material = SubResource("ShaderMaterial_lum5r")
 scale = Vector2(0.35, 0.35)
-texture = SubResource("CompressedTexture2D_s8rjn")
+texture = ExtResource("3_xy4n1")
+
+[node name="Liquid" type="Sprite2D" parent="Sprite2D"]
+material = SubResource("ShaderMaterial_xy4n1")
+texture = ExtResource("5_xy4n1")
+
+[node name="Liquid Top" type="Sprite2D" parent="Sprite2D"]
+material = SubResource("ShaderMaterial_areb7")
+position = Vector2(5, 0)
+texture = ExtResource("6_h0fon")
+script = ExtResource("7_lum5r")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)

@@ -24,7 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://0cxxsiy5nrkk" path="res://Sprites/UI/gears.png" id="23_3ffap"]
 [ext_resource type="Script" uid="uid://js2u8nc4565b" path="res://Scripts/dialogue_ui.gd" id="23_3fl7w"]
 [ext_resource type="Script" uid="uid://chpcwx7he3t7h" path="res://Scripts/recipe_catalogue.gd" id="23_r152n"]
-[ext_resource type="Script" uid="uid://3ea4eycmsxc8" path="res://Scripts/patron_sections.gd" id="24_2fy0o"]
+[ext_resource type="Script" uid="uid://3ea4eycmsxc8" path="res://Scripts/patron_ui.gd" id="24_2fy0o"]
 [ext_resource type="Texture2D" uid="uid://bu2l1xpjgalkj" path="res://Sprites/barwall.png" id="24_uc5w8"]
 [ext_resource type="Script" uid="uid://dgnip1u8bs2ie" path="res://Scripts/serve_manager.gd" id="27_dlgao"]
 [ext_resource type="Texture2D" uid="uid://cftenbtwg67wq" path="res://Sprites/UI/check-mark.png" id="28_n0gyp"]
@@ -88,6 +88,7 @@ y_sort_enabled = true
 [node name="Drain" type="Area2D" parent="Workstation" groups=["interactable"]]
 position = Vector2(1824, 625)
 metadata/Item_Type = "Drain"
+metadata/id = 0
 
 [node name="Sprite2D" type="Sprite2D" parent="Workstation/Drain"]
 z_index = -1
@@ -759,9 +760,8 @@ scale = Vector2(0.7, 0.7)
 
 [node name="Interact Button" type="Button" parent="PatronManager/Patron Panel"]
 layout_mode = 0
-offset_left = 5380.0
-offset_top = 6.10352e-05
-offset_right = 5900.0
+offset_left = 5400.0
+offset_right = 5920.0
 offset_bottom = 520.0
 icon = ExtResource("29_fehj6")
 

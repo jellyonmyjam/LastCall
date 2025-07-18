@@ -33,7 +33,7 @@ scale = Vector2(0.7, 0.6)
 texture = ExtResource("2_yvvkv")
 
 [node name="Bottle Minigame" type="Area2D" parent="PopupPanel/MinigameContent"]
-position = Vector2(-146, -57)
+position = Vector2(-150, -60)
 rotation = 0.261799
 script = ExtResource("3_quc38")
 

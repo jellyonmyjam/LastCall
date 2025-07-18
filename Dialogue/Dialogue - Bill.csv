@@ -5,6 +5,8 @@ ID,State,Speaker,Text
 4,Dialogue,Patron,Who lives in a pineapple under the sea?
 5,Dialogue,Patron,Spongebob Squarepants!
 6,Dialogue,Player,Absorbent and yellow and porous is he.
-7,Dialogue,Patron,"Be quiet, I'm the one singing it."
+7,Dialogue,Patron,Be quiet. I'm the one singing it.
 8,Idle,Player,How's it hanging?
 9,Idle,Patron,I've seen better days.
+10,Drink Received,Patron,"Hey, that's not bad."
+11,Drink Received,Patron,Pour me another.

@@ -4,3 +4,5 @@ ID,State,Speaker,Text
 3,Order,Player,I concur.
 4,Idle,Patron,That was a good drink.
 5,Idle,Player,Yup.
+6,Drink Received,Player,Did you like it?
+7,Drink Received,Patron,Kinda.

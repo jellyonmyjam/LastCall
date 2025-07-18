@@ -30,11 +30,12 @@ var bottle_inventory = {
 var glass_inventory = {
 	1: {"type": "Rocks", "fill_level": 0.0, "contents": {}, "prep": "Built", "has_ice": false, "has_soda": false},
 	2: {"type": "Highball", "fill_level": 0.0, "contents": {}, "prep": "Built", "has_ice": false, "has_soda": false},
-	3: {"type": "Mug", "fill_level": 0.0, "contents": {}, "prep": "Built", "has_ice": false, "has_soda": false}
+	3: {"type": "Mug", "fill_level": 0.0, "contents": {}, "prep": "Built", "has_ice": false, "has_soda": false},
+	4: {"type": "Coupe", "fill_level": 0.0, "contents": {}, "prep": "Built", "has_ice": false, "has_soda": false}
 }
 
 var tool_inventory := {
-	1: {"type": "Jigger", "fill_level": 0.0, "jigger_contents": "", "scene": jigger_scene},
+	1: {"type": "Jigger", "fill_level": 0.0, "jigger_contents": "", "contents_name": "", "scene": jigger_scene},
 	2: {"type": "Shaker", "fill_level": 0.0, "contents": {}, "shaken": false, "has_ice": false, "scene": shaker_scene},
 	3: {"type": "Shaker Lid", "scene": shaker_lid_scene}
 }
@@ -93,6 +94,12 @@ func glass_spawn():
 		glass_instance.set_meta("id", id)
 		glass_instance.texture_well = item_catalogue.glass_data[glass_name]["texture_well"]
 		glass_instance.texture_workstation = item_catalogue.glass_data[glass_name]["texture_workstation"]
+		
+		var liquid = glass_instance.get_node("Sprite2D").get_node("Liquid")
+		var liquid_texture = item_catalogue.glass_data[glass_name]["texture_liquid"]
+		var liquid_offset = item_catalogue.glass_data[glass_name]["liquid_offset"]
+		liquid.texture = liquid_texture
+		liquid.position = liquid_offset
 	
 		glass_objects.add_child(glass_instance)
 		glass_instance.global_position = point.global_position + snap_offset

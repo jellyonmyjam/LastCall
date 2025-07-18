@@ -1,6 +1,6 @@
 extends Node2D
 
-var order = "Daiquiri"
+var order = ""
 var serve_buttons = []
 var current_section = 0
 var drink_ready = null
@@ -49,6 +49,9 @@ func _process(_delta):
 
 
 func serve_drink():
+	order = patron.orders[patron.order_count]
+	patron.order_count += 1
+	print(order)
 	var id = drink_ready.get_meta("id")
 	var contents = inventory_manager.glass_inventory[id]["contents"]
 	var glass_type = inventory_manager.glass_inventory[id]["type"]
@@ -87,7 +90,6 @@ func score_drink(contents,glass_type,prep,has_ice,has_soda):
 			score += 20
 	
 	score = (score/total_score) * 70
-	print(score)
 
 	for ingredient in contents:
 		if not order_contents.has(ingredient):

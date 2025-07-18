@@ -4,7 +4,6 @@ extends Node2D
 @onready var patron_data: Node2D = $"../PatronData"
 @onready var dialogue_manager: Node2D = $"../DialogueManager"
 @onready var buttons: Array = $"../../PatronManager/Patron Panel/HBoxContainer".get_children()
-@onready var interact_button: Button = $"../../PatronManager/Patron Panel/Interact Button"
 
 const patron_scene = preload("res://Scenes/patron.tscn")
 
@@ -31,7 +30,6 @@ func _ready() -> void:
 		if patron_name != "":
 			spawn_patron(patron_name,i)
 			
-	interact_button.pressed.connect(interact_pressed)
 	arrivals()
 
 
@@ -60,13 +58,6 @@ func spawn_patron(patron_name, index):
 	
 	patron_instance.play_sequence()
 
-
-func interact_pressed():
-	if positions[current_section] != "":
-		#dialogue_manager.queue_dialogue(positions[current_section], current_section)
-		var patron = patron_sections[current_section].get_node("Patron")
-		patron.patron_interacted()
-		
 
 func arrivals():
 	while true:

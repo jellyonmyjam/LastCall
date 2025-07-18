@@ -15,6 +15,8 @@ var nearest_snap: Node2D = null
 var previous_snap_point: Node2D = null
 var saved_snap_point: Node2D = null
 var detach_origin: Vector2
+var liquid = null
+var liquid_top = null
 
 signal interaction_request(dragged_object: Area2D, target_object: Area2D)
 signal object_hover(dragged_object: Area2D, target_object: Area2D)
@@ -47,6 +49,13 @@ func _ready():
 	
 	# Duplicate shader at start
 	add_to_group("draggable")
+	
+	if item_type == "Glass":
+		liquid = $Sprite2D/Liquid
+		liquid.material = liquid.material.duplicate()
+		liquid_top = $"Sprite2D/Liquid Top"
+		liquid_top.material = liquid_top.material.duplicate()
+		
 	if sprite.material:
 		sprite.material = sprite.material.duplicate()
 	
@@ -253,12 +262,18 @@ func switch_area(area: Area2D) -> void:
 		var area_shape = RectangleShape2D.new()
 		area_shape.extents = size_well
 		collision_shape.shape = area_shape
+		if item_type == "Glass":
+			liquid.visible = true
+			liquid_top.visible = false
 	elif area == workstation:
 		sprite.texture = texture_workstation
 		scale = area_resize
 		var area_shape = RectangleShape2D.new()
 		area_shape.extents = size_workstation
 		collision_shape.shape = area_shape
+		if item_type == "Glass":
+			liquid.visible = false
+			liquid_top.visible = true
 	
 	#Update shader to clip object to new area
 	var collision_shape_area = area.get_node("CollisionShape2D")
@@ -267,6 +282,12 @@ func switch_area(area: Area2D) -> void:
 	var global_origin = collision_shape_area.get_global_position()
 	var top_left = global_origin - extents
 	var bottom_right = global_origin + extents
+	
 	sprite.material.set_shader_parameter("boundary_min", top_left)
 	sprite.material.set_shader_parameter("boundary_max", bottom_right)
+	if item_type == "Glass":
+		liquid.material.set_shader_parameter("boundary_min", top_left)
+		liquid.material.set_shader_parameter("boundary_max", bottom_right)
+		liquid_top.material.set_shader_parameter("boundary_min", top_left)
+		liquid_top.material.set_shader_parameter("boundary_max", bottom_right)
 	
